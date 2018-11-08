@@ -2,7 +2,7 @@ class CollectorsController <ApplicationController
 
   get '/signup' do
     if logged_in?
-      redirect to '/show'
+      redirect to '/my-collection'
     end
     erb :'collectors/create_collector'
   end
@@ -11,9 +11,26 @@ class CollectorsController <ApplicationController
     if !(params.has_value?("")) && (params[:email].include?("@"))
       @collector = Collector.create(username: params[:username], email: params[:email], password: params[:password])
       session["collector_id"] = @collector.id
-      redirect to '/show'
+      redirect to '/my-collection'
     else
       redirect to '/signup'
+    end
+  end
+
+  get 'login' do
+    if logged in?
+      redirect to '/my-collection'
+    end
+    erb :login
+  end
+
+  post '/login' do
+    @collector = Collector.find_by(:username => params[:username])
+    if @collector && @collector.authenticate(params[:password])
+      session["collector_id"] = @collector.id
+      redirect to '/my-collection'
+    else
+      redirect to "/login"
     end
   end
 
