@@ -36,7 +36,7 @@ class CollectorsController <ApplicationController
 
   get '/my-collection' do
     if logged_in?
-      @collector = Collector.find_by_slug(params[:slug])
+      @collector = Collector.find_by(params[:username])
     else
       redirect to '/login'
     end

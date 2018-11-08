@@ -5,7 +5,7 @@ class Collector < ActiveRecord::Base
   has_many :mediums, :through => :artworks
 
   def slug
-      name.downcase.gsub(" ","-")
+      username.downcase.gsub(" ","-")
     end
 
      def self.find_by_slug(slug)
