@@ -34,4 +34,9 @@ class CollectorsController <ApplicationController
     end
   end
 
+  get '/my-collection' do
+    @collector = Collector.find_by_slug(params[:slug])
+    erb :'/users/show'
+  end
+
 end
