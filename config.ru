@@ -5,4 +5,8 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use Rack::MethodOverride
+use CollectorsController
+use ArtworkController
+use ArtistController
+use MediumController
 run ApplicationController
