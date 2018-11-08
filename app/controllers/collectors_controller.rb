@@ -43,4 +43,13 @@ class CollectorsController <ApplicationController
     erb :'/collectors/show'
   end
 
+  get "/logout" do
+    if logged_in?
+      session.clear
+    else
+      redirect to "/"
+    end
+    redirect to '/'
+  end
+
 end
