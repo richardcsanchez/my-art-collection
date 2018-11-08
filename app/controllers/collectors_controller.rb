@@ -17,11 +17,11 @@ class CollectorsController <ApplicationController
     end
   end
 
-  get 'login' do
-    if logged in?
+  get '/login' do
+    if logged_in?
       redirect to '/my-collection'
     end
-    erb :login
+    erb :'collectors/login'
   end
 
   post '/login' do
@@ -35,8 +35,12 @@ class CollectorsController <ApplicationController
   end
 
   get '/my-collection' do
-    @collector = Collector.find_by_slug(params[:slug])
-    erb :'/users/show'
+    if logged_in?
+      @collector = Collector.find_by_slug(params[:slug])
+    else
+      redirect to '/login'
+    end
+    erb :'/collectors/show'
   end
 
 end

@@ -1,9 +1,15 @@
 class Collector < ActiveRecord::Base
-  include Slugifiable::InstanceMethods
-  extend Slugifiable::ClassMethods
   has_secure_password
   has_many :artworks
   has_many :artists, :through => :artworks
   has_many :mediums, :through => :artworks
+
+  def slug
+      name.downcase.gsub(" ","-")
+    end
+
+     def self.find_by_slug(slug)
+      Collector.all.find {|user| user.slug == slug }
+    end
 
 end
