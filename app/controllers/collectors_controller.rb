@@ -25,12 +25,12 @@ class CollectorsController <ApplicationController
   end
 
   post '/login' do
-    @collector = Collector.find_by(:username => params[:username])
-    if @collector && @collector.authenticate(params[:password])
+    @collector = Collector.find_by(username: params[:username])
+    binding.pry
+
+    if @collector && @collector.authenticate(params["password"])
       session["collector_id"] = @collector.id
       redirect to '/my-collection'
-    else
-      redirect to "/login"
     end
   end
 
