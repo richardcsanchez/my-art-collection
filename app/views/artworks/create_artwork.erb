@@ -12,16 +12,17 @@
   <br>
 
   <label>Add New Artist:</label>
-  <input id='new_artist' type='text' name='artist[name]'></br>
+  <input id='new_artist' type='text' name='artist[name]' placeholder="New Artist"></br>
 
 
-  <h4>Materials: <input type="text" name="materials" placeholder="Materials"></h4>
+  <h4>Medium: <input type="text" name="materials" placeholder="Medium"></h4>
 
-  <h4><label>Choose Medium: </label></h4>
-  <%Medium.all.each do |medium|%>
-  <label><%=medium.type%></label>
-  <input id='medium_<%=medium.id%>' type='checkbox' name='artwork[medium][]' value='<%= medium.id %>'>
+  <h4><label>Choose Genre: </label></h4>
+  <%Genre.all.each do |genre|%>
+  <label><%=genre.name%></label>
+  <input id='genre_<%=genre.id%>' type='checkbox' name='artwork[genre][]' value='<%= genre.id %>'>
   <%end%>
+  <br>
 
   <br>
 

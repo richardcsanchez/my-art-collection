@@ -8,5 +8,5 @@ use Rack::MethodOverride
 use CollectorsController
 use ArtworkController
 use ArtistController
-use MediumController
+use GenreController
 run ApplicationController

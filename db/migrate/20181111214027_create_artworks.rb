@@ -6,7 +6,7 @@ class CreateArtworks < ActiveRecord::Migration
     t.string :materials
     t.integer :collector_id
     t.integer :artist_id
-    t.integer :medium_id
+    t.integer :genre_id
   end
   end
 end
