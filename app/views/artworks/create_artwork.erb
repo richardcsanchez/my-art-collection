@@ -1,7 +1,7 @@
 <h2>Add a new work to your collection:</h2>
 <form action="/artworks" method="POST">
-  <h4>Title: <input type="text" name="title" placeholder="Title"></h4>
-	<h4>Year: <input type="text" name="year" placeholder="Year Created"></h4>
+  <h4>Title: <input type="text" name='artwork[title]' placeholder="Title"></h4>
+	<h4>Year: <input type="text" name="artwork[year]" placeholder="Year Created"></h4>
 
   <h4><label>Choose Artist: </label></h4>
   <%Artist.all.each do |artist|%>
@@ -12,10 +12,13 @@
   <br>
 
   <label>Add New Artist:</label>
-  <input id='new_artist' type='text' name='artist[name]' placeholder="New Artist"></br>
+  <input id='new_artist' type='text' name='artist[name]' placeholder="New Artist">
+  <input id='new_artist_bio' type='content' name='artist[bio]' placeholder="New Artist Bio">
+  <input id='new_artist_movements' type='text' name='artist[associated_movements]' placeholder="Associated Movements">
+</br>
 
 
-  <h4>Medium: <input type="text" name="materials" placeholder="Medium"></h4>
+  <h4>Medium: <input type="text" name="artwork[materials]" placeholder="Medium"></h4>
 
   <h4><label>Choose Genre: </label></h4>
   <%Genre.all.each do |genre|%>
