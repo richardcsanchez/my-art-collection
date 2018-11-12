@@ -6,7 +6,7 @@
   <h4><label>Choose Artist: </label></h4>
   <%Artist.all.each do |artist|%>
   <label><%=artist.name%></label>
-  <input id='artist_<%=artist.id%>' type='checkbox' name='artwork[artist][]' value='<%= artist.id %>'>
+  <input id='artist_<%=artist.id%>' type='checkbox' name='artwork[artist_id][]' value='<%= artist.id %>'>
   <%end%>
 
   <br>
@@ -21,11 +21,13 @@
   <h4>Medium: <input type="text" name="artwork[materials]" placeholder="Medium"></h4>
 
   <h4><label>Choose Genre: </label></h4>
-  <%Genre.all.each do |genre|%>
-  <label><%=genre.name%></label>
-  <input id='genre_<%=genre.id%>' type='checkbox' name='artwork[genre][]' value='<%= genre.id %>'>
-  <%end%>
-  <br>
+    <%Genre.all.each do |genre|%>
+    <label><%=genre.name%></label>
+    <input id='genre_<%=genre.id%>' type='checkbox' name='artwork[genre_id][]' value='<%= genre.id %>'>
+    <%end%>
+    <label>Add New Genre:</label>
+    <input id='new_genre' type='text' name='genre[name]' placeholder="New Genre">
+    <br>
 
   <br>
 
