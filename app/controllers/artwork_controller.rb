@@ -21,6 +21,7 @@ end
       @artwork.artist = Artist.find_by(params[:artwork][:artist])
     end
     @artwork.genre = Genre.find_by(params[:artwork][:genre])
+      binding.pry
     @artwork.collector = Helpers.current_user(session)
     @artwork.save
 
