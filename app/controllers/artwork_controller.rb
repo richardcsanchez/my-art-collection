@@ -22,12 +22,16 @@ end
     if !params["artist"]["name"].empty?
       @artwork.artist = Artist.new(params[:artist])
     elsif params["artist"]["name"].empty?
-      @artwork.artist = Artist.find_by(params[:artwork][:artist])
+      @artist = Artist.find_by_id(params[:artwork][:artist_id])
+      @artwork.artist_id = @artist.id
     end
     if !params["genre"]["name"].empty?
-      @artwork.genre = Genre.new(params["genre"])
+      @genre = Genre.new(params[:genre])
+      @artwork.genre_id = @genre.id
     elsif params["genre"]["name"].empty?
-       @artwork.genre = Genre.find_by(params[:artwork][:genre])
+       @genre = Genre.find_by_id(params[:artwork][:genre_id])
+       @artwork.genre_id = @genre.id
+       binding.pry
      end
     @artwork.collector = Helpers.current_user(session)
     @artwork.save

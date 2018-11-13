@@ -2,8 +2,7 @@
   <%if artwork.collector == Helpers.current_user(session)%>
     <ul><%=artwork.artist.name%>: <%=artwork.title%> <br>
     <a href='/artworks/<%=artwork.id%>'>View More</a> &nbsp;
-     <a href='/artworks/edit'>Edit</a> &nbsp;
-     <a href= '/artworks/delete'>Delete</a> </ul>
+     <a href='/artworks/edit'>Edit</a> </ul>
     </form>
   <%else nil%>
   <%end%>

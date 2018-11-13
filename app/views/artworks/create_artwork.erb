@@ -10,6 +10,7 @@
   <%end%>
 
   <br>
+  <br>
 
   <label>Add New Artist:</label>
   <input id='new_artist' type='text' name='artist[name]' placeholder="New Artist">
@@ -25,6 +26,8 @@
     <label><%=genre.name%></label>
     <input id='genre_<%=genre.id%>' type='checkbox' name='artwork[genre_id][]' value='<%= genre.id %>'>
     <%end%>
+    <br>
+    <br>
     <label>Add New Genre:</label>
     <input id='new_genre' type='text' name='genre[name]' placeholder="New Genre">
     <br>
