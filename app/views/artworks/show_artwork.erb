@@ -1,8 +1,14 @@
-<h2><%=@artwork.title%></h2><br>
-<h3><a href='artists/<%=@artwork.artist.id%>'><%=@artwork.artist.name%></a></h3>
-<h4><%=@artwork.year%></h4>
-<h4><%=@artwork.materials%></h4>
-<h4><a href='/genres/<%=@artwork.genre.id%>'><%=@artwork.genre.name%></a></h4>
+<h2>Title: <%=@artwork.title%></h2><br>
+<h3>Artist: <a href='artists/<%=@artwork.artist.id%>'><%=@artwork.artist.name%></a></h3>
+<h4>Year: <%=@artwork.year%></h4>
+<h4>Medium: <%=@artwork.materials%></h4>
+<h4>Genre: <a href='/genres/<%=@artwork.genre.id%>'><%=@artwork.genre.name%></a></h4>
+
+<br>
+
+<form action='/artworks/<%=@artwork.id%>/delete' method='get'>
+  <input type='submit' value='Delete Artwork'>
+</form>
 
 <form action= '/artworks' method='get'>
     <input type='submit' value='Show All Artworks' />

@@ -31,7 +31,8 @@ end
     redirect to "/artworks"
   end
 
-  delete '/artwork/:id/delete' do
+  get '/artworks/:id/delete' do
+    binding.pry
     @artwork = Artwork.find(params[:id])
     if @artwork.collector != Helpers.current_user(session)
       redirect to '/artworks'
