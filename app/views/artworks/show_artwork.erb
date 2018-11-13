@@ -2,7 +2,7 @@
 <h3><a href='artists/<%=@artwork.artist.id%>'><%=@artwork.artist.name%></a></h3>
 <h4><%=@artwork.year%></h4>
 <h4><%=@artwork.materials%></h4>
-<h4><a href='genres/<%=@artwork.genre.id%>'><%=@artwork.genre.name%></a></h4>
+<h4><a href='/genres/<%=@artwork.genre.id%>'><%=@artwork.genre.name%></a></h4>
 
 <form action= '/artworks' method='get'>
     <input type='submit' value='Show All Artworks' />
