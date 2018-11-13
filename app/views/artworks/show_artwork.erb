@@ -6,7 +6,8 @@
 
 <br>
 
-<form action='/artworks/<%=@artwork.id%>/delete' method='get'>
+<form action='/artworks/<%=@artwork.id%>/delete' method='post'>
+  <input id="hidden" type="hidden" name="_method" value="delete"/>
   <input type='submit' value='Delete Artwork'>
 </form>
 

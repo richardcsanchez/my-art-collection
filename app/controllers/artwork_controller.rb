@@ -31,19 +31,19 @@ end
     redirect to "/artworks"
   end
 
-  get '/artworks/:id/delete' do
-    binding.pry
-    @artwork = Artwork.find(params[:id])
-    if @artwork.collector != Helpers.current_user(session)
-      redirect to '/artworks'
-    end
+  delete '/artworks/:id/delete' do
     if Helpers.is_logged_in?(session)
-        @artwork.destroy
-        redirect to '/artworks'
-      else
-        redirect to '/artworks'
-      end
+      @artwork = Artwork.find_by_id(params[:id])
+    else
       redirect to '/login'
+    end
+    if @artwork.collector == Helpers.current_user(session)
+      @artwork.delete
+        redirect to '/artworks'
+    else
+      redirect to "/artworks/#{@artwork.id}"
+    end
+
   end
 
 
