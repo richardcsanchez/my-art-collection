@@ -1,6 +1,11 @@
 <%Artwork.all.each do |artwork|%>
-<ul><%=artwork.artist.name%>: <%=artwork.title%> - <%=artwork.genre.name%> </ul>
+<ul><%=artwork.artist.name%>: <%=artwork.title%> <br>
+<a href='/artworks/<%=artwork.id%>'>View More</a> &nbsp;
+ <a href='/artworks/edit'>Edit</a> &nbsp;
+ <a href= '/artworks/delete'>Delete</a> </ul>
+</form>
 <%end%>
+
 <br>
 <h4>Add to your collection!</h4>
 <form action= '/artworks/new' method='get'>

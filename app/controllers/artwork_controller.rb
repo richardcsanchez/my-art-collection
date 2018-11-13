@@ -9,7 +9,7 @@ class ArtworkController <ApplicationController
   end
 
   get '/artworks/:id' do
-  @artwork = Artwork.find(params[:id])
+  @artwork = Artwork.find_by_id(params[:id])
   erb :'artworks/show_artwork'
 end
 
@@ -17,11 +17,14 @@ end
     @artwork = Artwork.new(params[:artwork])
     if !params["artist"]["name"].empty?
       @artwork.artist = Artist.new(params[:artist])
-    else params["artist"]["name"].empty?
+    elsif params["artist"]["name"].empty?
       @artwork.artist = Artist.find_by(params[:artwork][:artist])
     end
-    @artwork.genre = Genre.find_by(params[:artwork][:genre])
-      binding.pry
+    if !params["genre"]["name"].empty?
+      @artwork.genre = Genre.new(params["genre"])
+    elsif params["genre"]["name"].empty?
+       @artwork.genre = Genre.find_by(params[:artwork][:genre])
+     end
     @artwork.collector = Helpers.current_user(session)
     @artwork.save
 
@@ -29,7 +32,6 @@ end
   end
 
   delete '/artwork/:id/delete' do
-    binding.pry
     @artwork = Artwork.find(params[:id])
     if @artwork.collector != Helpers.current_user(session)
       redirect to '/artworks'

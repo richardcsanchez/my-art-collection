@@ -23,9 +23,11 @@
   <h4><label>Choose Genre: </label></h4>
     <%Genre.all.each do |genre|%>
     <label><%=genre.name%></label>
-    <input id='genre_<%=genre.id%>' type='checkbox' name='genre[]' value='<%= genre.id %>'>
+    <input id='genre_<%=genre.id%>' type='checkbox' name='artwork[genre_id][]' value='<%= genre.id %>'>
     <%end%>
-
+    <label>Add New Genre:</label>
+    <input id='new_genre' type='text' name='genre[name]' placeholder="New Genre">
+    <br>
 
   <br>
 
