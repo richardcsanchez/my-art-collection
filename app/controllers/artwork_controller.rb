@@ -4,9 +4,14 @@ class ArtworkController <ApplicationController
     erb :'artworks/artwork'
   end
 
-  get '/artworks/new'do
+  get '/artworks/new' do
     erb :'artworks/create_artwork'
   end
+
+  get '/artworks/:id' do
+  @artwork = Artwork.find(params[:id])
+  erb :'artworks/show_artwork'
+end
 
   post '/artworks' do
     @artwork = Artwork.new(params[:artwork])
@@ -22,7 +27,7 @@ class ArtworkController <ApplicationController
     redirect to "/artworks"
   end
 
-  get '/artwork/:id/delete' do
+  delete '/artwork/:id/delete' do
     binding.pry
     @artwork = Artwork.find(params[:id])
     if @artwork.collector != Helpers.current_user(session)
