@@ -9,23 +9,32 @@ class ArtworkController <ApplicationController
   end
 
   post '/artworks' do
-    binding.pry
-
     @artwork = Artwork.new(params[:artwork])
     if !params["artist"]["name"].empty?
       @artwork.artist = Artist.new(params[:artist])
-    else
+    else params["artist"]["name"].empty?
       @artwork.artist = Artist.find_by(params[:artwork][:artist])
     end
-    if !params[:genre][:name].empty?
-      @artwork.genre = Genre.new(params[:genre])
-    else
-      @artwork.genre = Genre.find_by(params[:artwork][:genre])
-    end
+    @artwork.genre = Genre.find_by(params[:artwork][:genre])
     @artwork.collector = Helpers.current_user(session)
     @artwork.save
 
     redirect to "/artworks"
+  end
+
+  get '/artwork/:id/delete' do
+    binding.pry
+    @artwork = Artwork.find(params[:id])
+    if @artwork.collector != Helpers.current_user(session)
+      redirect to '/artworks'
+    end
+    if Helpers.is_logged_in?(session)
+        @artwork.destroy
+        redirect to '/artworks'
+      else
+        redirect to '/artworks'
+      end
+      redirect to '/login'
   end
 
 

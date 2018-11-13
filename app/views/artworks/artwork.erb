@@ -1,3 +1,8 @@
 <%Artwork.all.each do |artwork|%>
-<ul><%=artwork.artist%>: <%=artwork.title%></ul>
+<ul><%=artwork.artist.name%>: <%=artwork.title%></ul>
 <%end%>
+<br>
+<h4>Add to your collection!</h4>
+<form action= '/artworks/new' method='get'>
+    <input type='submit' value='Add New Artwork' />
+  </form>
