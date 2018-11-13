@@ -1,6 +1,10 @@
 class ArtworkController <ApplicationController
 
   get '/artworks' do
+    if !Helpers.is_logged_in?(session)
+      redirect to '/'
+    end
+
     erb :'artworks/artwork'
   end
 
@@ -9,8 +13,8 @@ class ArtworkController <ApplicationController
   end
 
   get '/artworks/:id' do
-  @artwork = Artwork.find_by_id(params[:id])
-  erb :'artworks/show_artwork'
+    @artwork = Artwork.find_by_id(params[:id])
+    erb :'artworks/show_artwork'
 end
 
   post '/artworks' do
