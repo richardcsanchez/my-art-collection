@@ -3,3 +3,10 @@
 <%Genre.all.each do |genre|%>
   <h4><ul><a href='genres/<%=genre.id%>'><%=genre.name%></a></ul></h4>
 <%end%>
+
+
+<br>
+<br>
+<form action= '/artworks' method='get'>
+    <input type='submit' value='Show All Artworks' />
+  </form>
