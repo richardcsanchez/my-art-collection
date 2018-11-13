@@ -70,12 +70,12 @@ class ArtworkController <ApplicationController
         redirect to '/login'
       end
       if !(params.has_value?(""))
-          @artwork.update("params")
+          @artwork.update(title: params[:title], artist: params[:artist], year: params[:year], materials: params[:materials], )
           @artwork.save
         else
           redirect to "/artworks/#{@artwork.id}/edit"
       end
-      redirect to "/tweets/#{@artwork.id}"
+      redirect to "/artworks/#{@artwork.id}"
     end
 
 end

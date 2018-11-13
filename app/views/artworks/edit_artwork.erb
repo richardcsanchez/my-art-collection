@@ -1,1 +1,10 @@
 <h2>Edit Artwork</h2>
+
+<form method="post" action="/artworks/<%=@artwork.id%>">
+  <input type="hidden" name="_method" value="patch">
+  Title: <input type="text" name="title" id="title" value="<%= @artwork.title %>"><br>
+  Artist: <input type="text" name="artist" id="artist" value="<%= @artwork.artist.name %>"><br>
+  Year: <input type="text" name="year" id="year" value="<%= @artwork.year %>"><br>
+  Medium: <input type="text" name="materials" id="materials" value="<%= @artwork.materials %>"><br>
+  <input type="submit" value="Edit">
+</form>
