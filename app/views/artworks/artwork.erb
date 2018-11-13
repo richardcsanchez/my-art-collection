@@ -1,8 +1,7 @@
 <%Artwork.all.each do |artwork|%>
   <%if artwork.collector == Helpers.current_user(session)%>
-    <ul><%=artwork.artist.name%>: <%=artwork.title%> <br>
-    <a href='/artworks/<%=artwork.id%>'>View More</a> &nbsp;
-     <a href='/artworks/edit'>Edit</a> </ul>
+    <ul><%=artwork.artist.name%>: <%=artwork.title%>
+    <a href='/artworks/<%=artwork.id%>'>View More</a> &nbsp; </ul>
     </form>
   <%else nil%>
   <%end%>

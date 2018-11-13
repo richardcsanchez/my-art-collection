@@ -15,24 +15,35 @@ class ArtworkController <ApplicationController
   get '/artworks/:id' do
     @artwork = Artwork.find_by_id(params[:id])
     erb :'artworks/show_artwork'
-end
+  end
+
+  get '/artworks/:id/edit' do
+    if Helpers.is_logged_in?(session)
+        @artwork = Artwork.find_by_id(params[:id])
+     else
+       redirect to '/login'
+     end
+     erb :'artworks/edit_artwork'
+  end
 
   post '/artworks' do
     @artwork = Artwork.new(params[:artwork])
+
     if !params["artist"]["name"].empty?
       @artwork.artist = Artist.new(params[:artist])
     elsif params["artist"]["name"].empty?
       @artist = Artist.find_by_id(params[:artwork][:artist_id])
       @artwork.artist_id = @artist.id
     end
+
     if !params["genre"]["name"].empty?
       @genre = Genre.new(params[:genre])
       @artwork.genre_id = @genre.id
     elsif params["genre"]["name"].empty?
        @genre = Genre.find_by_id(params[:artwork][:genre_id])
        @artwork.genre_id = @genre.id
-       binding.pry
      end
+
     @artwork.collector = Helpers.current_user(session)
     @artwork.save
 
@@ -51,8 +62,20 @@ end
     else
       redirect to "/artworks/#{@artwork.id}"
     end
-
   end
 
+  patch '/artworks/:id' do
+      @artwork = Artwork.find_by_id(params[:id])
+      if @artwork.collector != Helpers.current_user(session)
+        redirect to '/login'
+      end
+      if !(params.has_value?(""))
+          @artwork.update("params")
+          @artwork.save
+        else
+          redirect to "/artworks/#{@artwork.id}/edit"
+      end
+      redirect to "/tweets/#{@artwork.id}"
+    end
 
 end

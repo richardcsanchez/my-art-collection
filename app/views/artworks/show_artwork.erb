@@ -5,6 +5,7 @@
 <h4>Genre: <a href='/genres/<%=@artwork.genre.id%>'><%=@artwork.genre.name%></a></h4>
 
 <br>
+<a href='/artworks/<%=@artwork.id%>/edit'>Edit</a> 
 
 <form action='/artworks/<%=@artwork.id%>/delete' method='post'>
   <input id="hidden" type="hidden" name="_method" value="delete"/>
