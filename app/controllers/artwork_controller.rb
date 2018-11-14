@@ -3,7 +3,6 @@ class ArtworkController <ApplicationController
   get '/artworks' do
     if !Helpers.is_logged_in?(session)
       redirect to '/'
-    erb :'artworks/artwork'
     end
 
     erb :'artworks/artwork'
@@ -54,13 +53,13 @@ class ArtworkController <ApplicationController
     redirect to "/artworks"
   end
 
-  get '/artworks/:id/delete' do
+  delete '/artworks/:id/delete' do
     if Helpers.is_logged_in?(session)
       @artwork = Artwork.find_by_id(params[:id])
     else
       redirect to '/login'
     end
-    if @artwork.collector == Helpers.current_user(session)
+    if @artwork.collector == Helpers.current_user(session) 
       @artwork.delete
         redirect to '/artworks'
     else

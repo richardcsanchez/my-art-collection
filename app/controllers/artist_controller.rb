@@ -17,15 +17,14 @@ get '/artists/:id/delete' do
   erb :'artists/edit_artist'
 end
 
-get '/artists/:id/delete' do
+delete '/artists/:id/delete' do
   if Helpers.is_logged_in?(session)
     @artist = Artist.find_by_id(params[:id])
   else
     redirect to '/login'
   end
-
-  if  @artist.artworks == nil
-    @artist.delete
+  if  @artist.artworks == []
+    @artist.destroy
       redirect to '/artists'
   else
     redirect to "/artists"
