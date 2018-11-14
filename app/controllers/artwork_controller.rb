@@ -33,20 +33,20 @@ class ArtworkController <ApplicationController
     @artwork = Artwork.new(params[:artwork])
 
     if !params["artist"]["name"].empty?
-      @artwork.artist = Artist.new(params[:artist])
+      @artwork.artist = Artist.create(params[:artist])
     elsif params["artist"]["name"].empty?
       @artist = Artist.find_by_id(params[:artwork][:artist_id])
       @artwork.artist_id = @artist.id
     end
 
     if !params["genre"]["name"].empty?
-      @genre = Genre.new(params["genre"])
-      binding.pry
+      @genre = Genre.create(params["genre"])
       @artwork.genre_id = @genre.id
     elsif params["genre"]["name"].empty?
        @genre = Genre.find_by_id(params[:artwork][:genre_id])
        @artwork.genre_id = @genre.id
      end
+     binding.pry
 
     @artwork.collector = Helpers.current_user(session)
     @artwork.save
@@ -70,26 +70,24 @@ class ArtworkController <ApplicationController
 
   patch '/artworks/:id' do
     @artwork = Artwork.find_by_id(params[:id])
-    binding.pry
+    # binding.pry
     if !params["artist"]["name"].empty?
-      @artwork.artist = Artist.new(params[:artist])
-    elsif params["artist"]["name"].empty?
-      artist = Artist.find_by_id(params[:artwork][:artist_id])
-      @artwork.artist_id = artist.id
-      @artwork.artist = artist
+      @artwork.artist = Artist.create(params[:artist])
+    # else
+    #   artist = Artist.find_by_id(params[:artwork][:artist_id])
+    #   @artwork.artist = artist
     end
-    binding.pry
+    # binding.pry
     if !params["genre"]["name"].empty?
-      genre = Genre.new(params[:genre])
+      genre = Genre.create(params[:genre])
       @artwork.genre_id = genre.id
-    elsif params["genre"]["name"].empty?
-       genre = Genre.find_by_id(params[:artwork][:genre_id])
-       @artwork.genre_id = genre.id
-       @artwork.genre = genre
+    # else
+    #    genre = Genre.find_by_id(params[:artwork][:genre_id])
+    #    @artwork.genre = genre
      end
-     binding.pry
+    #  binding.pry
     @artwork.update(params[:artwork])
-    @artwork.save
+    # @artwork.save
 
     binding.pry
     redirect to "artworks/#{@artwork.id}"
