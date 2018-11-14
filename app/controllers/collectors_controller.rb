@@ -2,8 +2,10 @@ class CollectorsController <ApplicationController
 
   get '/signup' do
     if Helpers.is_logged_in?(session)
-      redirect to "/collectors/#{current_user.slug}"
+      collector = Helpers.current_user(session)
+      redirect to "/collectors/#{collector.slug}"
     end
+
     erb :'collectors/create_collector'
   end
 
@@ -21,19 +23,22 @@ class CollectorsController <ApplicationController
   get '/login' do
     if Helpers.is_logged_in?(session)
       collector = Helpers.current_user(session)
-      redirect to "/artworks"
+      redirect to "/collectors/#{collector.slug}"
     end
+
     erb :'collectors/login'
   end
 
   post '/login' do
     @collector = Collector.find_by(username: params[:username])
+
     if @collector && @collector.authenticate(params[:password])
       session[:collector_id] = @collector.id
-      redirect to "/artworks"
+      redirect to "/collectors/#{@collector.slug}"
     else
       redirect to '/login'
     end
+
   end
 
   get '/collectors/:slug' do
@@ -42,6 +47,7 @@ class CollectorsController <ApplicationController
     else
       redirect to '/login'
     end
+
     erb :'/collectors/show'
   end
 
@@ -51,6 +57,7 @@ class CollectorsController <ApplicationController
     else
       redirect to "/"
     end
+
     redirect to '/'
   end
 

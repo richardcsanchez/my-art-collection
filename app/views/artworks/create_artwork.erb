@@ -20,7 +20,7 @@
 
   <h4>Medium: <input type="text" name="artwork[materials]" placeholder="Medium"></h4>
 
-  <h4><label>Choose Genre: </label>(Choose One)</h4>
+  <h4><label>Choose Genre: </label></h4>
     <%Genre.all.each do |genre|%>
     <label><%=genre.name%></label>
     <input id='genre_<%=genre.id%>' type='radio' name='artwork[genre_id]' value='<%= genre.id %>'>

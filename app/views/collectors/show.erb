@@ -1,19 +1,18 @@
-<h2> Welcome to <%=Helpers.current_user(session).username%>'s Art Collection</h2>
+<%@collector = Helpers.current_user(session)%>
+<h2> Welcome <%=@collector.username%></h2>
 
-<br>
+<h4>Email: <%=@collector.email%></h4>
 
-<h4>Add to your collection!</h4>
-<form action= '/artworks/new' method='get'>
-    <input type='submit' value='Add New Artwork' />
+<br><br>
+
+
+<h4>Browse Your Collection:</h4>
+<form action= '/artworks' method='get'>
+    <input type='submit' value='By Artworks' />
   </form>
-
-<h4>Browse the Collection:</h4>
 <form action= '/artists' method='get'>
     <input type='submit' value='By Artists' />
   </form>
   <form action= '/genres' method='get'>
       <input type='submit' value='By Genre' />
-    </form>
-  <form action= '/artworks' method='get'>
-      <input type='submit' value='All Artworks' />
     </form>

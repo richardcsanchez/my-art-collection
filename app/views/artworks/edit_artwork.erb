@@ -10,7 +10,7 @@
 
     <h3>Edit Artist </h3>
     <% @artists.each do |artist| %>
-    <input type="radio" name="artwork[artist_id]" id="<%= artist.id%>" value="<%=artist.id%>"
+    <input type="checkbox" name="artwork[artist_id]" id="<%= artist.id%>" value="<%=artist.id%>"
       <%='checked' if @artwork.artist == artist %>><%=artist.name%></input>
     <%end%>
 
@@ -21,7 +21,7 @@
 
     <h3>Edit Genre:</h3>
     <% @genres.each do |genre| %>
-    <input type="radio" name="artwork[genre_id]" id="<%= genre.id%>" value="<%=genre.id%>"
+    <input type="checkbox" name="artwork[genre_id]" id="<%=genre.id%>" value="<%=genre.id%>"
       <%='checked' if @artwork.genre == genre %>><%=genre.name%></input>
     <%end%>
 
@@ -32,9 +32,7 @@
 
     <br><br>
 
-    <h4>Image Link: <input type="text" name="artwork[image]" placeholder="<%=@artwork.image%>"></h4>
-
-    <br><br>
+    <h4>Image Link: <input type="text" name="artwork[image]" value="<%=@artwork.image%>"></h4>
 
     <input type="submit" value="Edit Artwork">
   </form>

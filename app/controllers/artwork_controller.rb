@@ -2,18 +2,27 @@ class ArtworkController <ApplicationController
 
   get '/artworks' do
     if !Helpers.is_logged_in?(session)
-      redirect to '/'
+      redirect to '/login'
     end
 
     erb :'artworks/artwork'
   end
 
   get '/artworks/new' do
+    if !Helpers.is_logged_in?(session)
+      redirect to "/login"
+    end
+
     erb :'artworks/create_artwork'
   end
 
   get '/artworks/:id' do
+    if !Helpers.is_logged_in?(session)
+      redirect to "/login"
+    end
+
     @artwork = Artwork.find_by_id(params[:id])
+
     erb :'artworks/show_artwork'
   end
 
@@ -30,7 +39,7 @@ class ArtworkController <ApplicationController
 
   post '/artworks' do
     @artwork = Artwork.new(params[:artwork])
-
+    ####### bug fix
     if !params["artist"]["name"].empty?
       @artwork.artist = Artist.create(params[:artist])
     elsif params["artist"]["name"].empty?
@@ -45,7 +54,7 @@ class ArtworkController <ApplicationController
        @genre = Genre.find_by_id(params[:artwork][:genre_id])
        @artwork.genre_id = @genre.id
      end
-     binding.pry
+     #######
 
     @artwork.collector = Helpers.current_user(session)
     @artwork.save
@@ -59,7 +68,8 @@ class ArtworkController <ApplicationController
     else
       redirect to '/login'
     end
-    if @artwork.collector == Helpers.current_user(session) 
+
+    if @artwork.collector == Helpers.current_user(session)
       @artwork.delete
         redirect to '/artworks'
     else
@@ -69,26 +79,17 @@ class ArtworkController <ApplicationController
 
   patch '/artworks/:id' do
     @artwork = Artwork.find_by_id(params[:id])
-    # binding.pry
+
     if !params["artist"]["name"].empty?
       @artwork.artist = Artist.create(params[:artist])
-    # else
-    #   artist = Artist.find_by_id(params[:artwork][:artist_id])
-    #   @artwork.artist = artist
     end
-    # binding.pry
+
     if !params["genre"]["name"].empty?
       genre = Genre.create(params[:genre])
       @artwork.genre_id = genre.id
-    # else
-    #    genre = Genre.find_by_id(params[:artwork][:genre_id])
-    #    @artwork.genre = genre
      end
-    #  binding.pry
-    @artwork.update(params[:artwork])
-    # @artwork.save
 
-    binding.pry
+    @artwork.update(params[:artwork])
     redirect to "artworks/#{@artwork.id}"
     end
 

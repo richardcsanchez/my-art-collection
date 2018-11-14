@@ -1,10 +1,12 @@
+
+
 <h2>Title: <%=@artwork.title%></h2><br>
 <h3>Artist: <a href='/artists/<%=@artwork.artist.id%>'><%=@artwork.artist.name%></a></h3>
 <h4>Year: <%=@artwork.year%></h4>
 <h4>Medium: <%=@artwork.materials%></h4>
 <h4>Genre: <a href='/genres/<%=@artwork.genre_id%>'><%=@artwork.genre.name%></a></h4>
 
-<img src="<%=@artwork.image%>" title="madame x" />
+<img src="<%=@artwork.image%>" title="<%=@artwork.title%>" />
 
 <br><br><br>
 
