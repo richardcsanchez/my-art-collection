@@ -40,7 +40,8 @@ class ArtworkController <ApplicationController
     end
 
     if !params["genre"]["name"].empty?
-      @genre = Genre.new(params[:genre])
+      @genre = Genre.new(params["genre"])
+      binding.pry
       @artwork.genre_id = @genre.id
     elsif params["genre"]["name"].empty?
        @genre = Genre.find_by_id(params[:artwork][:genre_id])

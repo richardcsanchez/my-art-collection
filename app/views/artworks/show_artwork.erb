@@ -2,9 +2,10 @@
 <h3>Artist: <a href='/artists/<%=@artwork.artist.id%>'><%=@artwork.artist.name%></a></h3>
 <h4>Year: <%=@artwork.year%></h4>
 <h4>Medium: <%=@artwork.materials%></h4>
-<h4>Genre: <a href='/genres/<%=@artwork.genre.id%>'><%=@artwork.genre.name%></a></h4>
 
-<img src="https://i.imgur.com/A7vPnVp.jpg" title="madame x" /><br>
+<h4>Genre: <a href='/genres/<%=@artwork.genre_id%>'><%=@artwork.genre_id.name%></a></h4>
+
+<img src="<%=@artwork.image%>" title="madame x" /><br>
 
 <form action='/artworks/<%=@artwork.id%>/edit' method="GET">
   <input type='submit' value='Edit Artwork'>
