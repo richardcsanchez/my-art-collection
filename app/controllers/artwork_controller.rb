@@ -3,6 +3,7 @@ class ArtworkController <ApplicationController
   get '/artworks' do
     if !Helpers.is_logged_in?(session)
       redirect to '/'
+    erb :'artworks/artwork'
     end
 
     erb :'artworks/artwork'

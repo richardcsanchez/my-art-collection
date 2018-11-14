@@ -21,7 +21,7 @@ class CollectorsController <ApplicationController
   get '/login' do
     if Helpers.is_logged_in?(session)
       collector = Helpers.current_user(session)
-      redirect to "/collectors/#{collector.slug}"
+      redirect to "/artworks"
     end
     erb :'collectors/login'
   end
