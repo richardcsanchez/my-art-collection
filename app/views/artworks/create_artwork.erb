@@ -9,15 +9,14 @@
   <input id='artist_<%=artist.id%>' type='radio' name='artwork[artist_id]' value='<%= artist.id %>'>
   <%end%>
 
-  <br>
-  <br>
+  <br><br>
 
   <label>Add New Artist:</label>
   <input id='new_artist' type='text' name='artist[name]' placeholder="New Artist">
   <input id='new_artist_bio' type='content' name='artist[bio]' placeholder="New Artist Bio">
   <input id='new_artist_movements' type='text' name='artist[associated_movements]' placeholder="Associated Movements">
-</br>
 
+<br>
 
   <h4>Medium: <input type="text" name="artwork[materials]" placeholder="Medium"></h4>
 
@@ -26,21 +25,20 @@
     <label><%=genre.name%></label>
     <input id='genre_<%=genre.id%>' type='radio' name='artwork[genre_id]' value='<%= genre.id %>'>
     <%end%>
-    <br>
-    <br>
+
+<br><br>
+
     <label>Add New Genre:</label>
     <input id='new_genre' type='text' name='genre[name]' placeholder="New Genre">
-    <br>
 
-  <br>
+<br><br>
 
   <h4>Image Link: <input type="text" name="artwork[image]" placeholder="Image Link"></h4>
-
-
 
 	<input type="submit" value="Add Artwork">
 </form>
 
+<br><br><br>
 
 <form action= '/artworks' method='get'>
     <input type='submit' value='Show All Artworks' />

@@ -2,29 +2,30 @@
 <h3>Artist: <a href='/artists/<%=@artwork.artist.id%>'><%=@artwork.artist.name%></a></h3>
 <h4>Year: <%=@artwork.year%></h4>
 <h4>Medium: <%=@artwork.materials%></h4>
-
 <h4>Genre: <a href='/genres/<%=@artwork.genre_id%>'><%=@artwork.genre.name%></a></h4>
 
-<img src="<%=@artwork.image%>" title="madame x" /><br>
+<img src="<%=@artwork.image%>" title="madame x" />
+
+<br><br><br>
 
 <form action='/artworks/<%=@artwork.id%>/edit' method="GET">
   <input type='submit' value='Edit Artwork'>
 </form>
-<br>
+
+<br><br>
 
 <form action='/artworks/<%=@artwork.id%>/delete' method='post'>
   <input id="hidden" type="hidden" name="_method" value="delete"/>
   <input type='submit' value='Delete Artwork'>
 </form>
-<br>
-<br>
-<br>
 
-<form action= '/genres' method='get'>
-    <input type='submit' value='Show All Genres' />
-  </form>
+<br><br><br>
+
 <form action= '/artworks' method='get'>
     <input type='submit' value='Show All Artworks' />
+  </form>
+<form action= '/genres' method='get'>
+    <input type='submit' value='Show All Genres' />
   </form>
 <form action= '/artists' method='get'>
     <input type='submit' value='Show All Artists' />

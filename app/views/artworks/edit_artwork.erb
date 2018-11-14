@@ -4,15 +4,18 @@
     <input type="hidden" id="hidden" name="_method" value="patch">
       Title:<input type="text" name="artwork[title]" id="artwork_title" value="<%=@artwork.title%>"><br>
       Year: <input type="text" name="artwork[year]" id="artwork_year" value="<%= @artwork.year %>"><br>
-      Medium: <input type="text" name="artwork[materials]" id="artwork_materials" value="<%= @artwork.materials %>"><br>
-    </br>
+      Medium: <input type="text" name="artwork[materials]" id="artwork_materials" value="<%= @artwork.materials %>">
+
+      <br><br>
 
     <h3>Edit Artist </h3>
     <% @artists.each do |artist| %>
     <input type="radio" name="artwork[artist_id]" id="<%= artist.id%>" value="<%=artist.id%>"
       <%='checked' if @artwork.artist == artist %>><%=artist.name%></input>
     <%end%>
+
     <br><br>
+
     <label>Add New Artist:</label>
     <input type='text' name="artist[name]" id="new_artist">
 
@@ -21,8 +24,9 @@
     <input type="radio" name="artwork[genre_id]" id="<%= genre.id%>" value="<%=genre.id%>"
       <%='checked' if @artwork.genre == genre %>><%=genre.name%></input>
     <%end%>
-    <br>
-    <br>
+
+    <br><br>
+
     <label>Add New Genre:</label>
     <input type='text' name="genre[name]" id="new_genre">
 
@@ -34,8 +38,9 @@
 
     <input type="submit" value="Edit Artwork">
   </form>
-  <br>
-  <br>
+
+  <br><br>
+
   <form action= '/artworks' method='get'>
       <input type='submit' value='Show All Artworks' />
     </form>
