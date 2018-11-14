@@ -1,6 +1,9 @@
 class ArtistController <ApplicationController
 
 get '/artists' do
+  if !Helpers.is_logged_in?(session)
+    redirect to '/'
+  end
   erb :'artists/artists'
 end
 
@@ -15,8 +18,6 @@ get '/artists/:id/delete' do
 end
 
 get '/artists/:id/delete' do
-  binding.pry
-
   if Helpers.is_logged_in?(session)
     @artist = Artist.find_by_id(params[:id])
   else
@@ -25,7 +26,7 @@ get '/artists/:id/delete' do
 
   if  @artist.artworks == nil
     @artist.delete
-      redirect to '/artworks'
+      redirect to '/artists'
   else
     redirect to "/artists"
   end

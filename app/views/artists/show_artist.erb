@@ -1,3 +1,5 @@
+
+
 <h2><%=@artist.name%></h2>
 <p><%=@artist.bio%></p>
 <p><%=@artist.associated_movements%></p>
@@ -9,7 +11,7 @@
 <h4>Artworks by <%=@artist.name%>:</h4>
 
 <%Artwork.all.each do |artwork|%>
-  <%if artwork.artist == @artist%>
+  <%if artwork.artist == @artist && artwork.collector == Helpers.current_user(session)%>
       <ul><%=artwork.artist.name%>:
       <a href='/artworks/<%=artwork.id%>'><%=artwork.title%></a> -
       <a href='/genres/<%=artwork.genre.id%>'><%=artwork.genre.name%></a></ul>
