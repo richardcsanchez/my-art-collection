@@ -28,10 +28,9 @@ class CollectorsController <ApplicationController
 
   post '/login' do
     @collector = Collector.find_by(username: params[:username])
-    binding.pry
     if @collector && @collector.authenticate(params[:password])
       session[:collector_id] = @collector.id
-      redirect to "/collectors/#{@collector.slug}"
+      redirect to "/artworks"
     else
       redirect to '/login'
     end

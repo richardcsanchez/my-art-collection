@@ -1,10 +1,32 @@
 <h2>Edit Artwork</h2>
 
 <form method="post" action="/artworks/<%=@artwork.id%>">
-  <input type="hidden" name="_method" value="patch">
-  Title: <input type="text" name="title" id="title" value="<%= @artwork.title %>"><br>
-  Artist: <input type="text" name="artist" id="artist" value="<%= @artwork.artist.name %>"><br>
-  Year: <input type="text" name="year" id="year" value="<%= @artwork.year %>"><br>
-  Medium: <input type="text" name="materials" id="materials" value="<%= @artwork.materials %>"><br>
-  <input type="submit" value="Edit">
-</form>
+    <input type="hidden" id="hidden" name="_method" value="patch">
+      Title:<input type="text" name="title" id="artwork" value="<%=@artwork.title%>"><br>
+      Year: <input type="text" name="year" id="year" value="<%= @artwork.year %>"><br>
+      Medium: <input type="text" name="materials" id="materials" value="<%= @artwork.materials %>"><br>
+    </br>
+
+    <h3>Edit Artist </h3>
+    <% Artist.all.each do |artist| %>
+    <ul><label><%=artist.name%></label>
+      <input type="checkbox" name="artist" value="<%=artist.name%>" id="<%=artist.id%>"
+      <%='checked' if @artwork.artist == "artist"%>></ul>
+    <%end%>
+
+    <label>Add New Artist:</label>
+    <input type='text' name="artist[name]" id="new_artist">
+
+    <h3>Edit Genre:</h3>
+    <%Genre.all.each do |genre|%>
+    <ul><%=genre.name%>
+        <input type="checkbox" name="genre" value='<%=genre.name%>'id="<%=genre.id%>"
+        <%= 'checked' if @artwork.genre == "genre"%>></ul>
+    <%end%>
+
+    <label>Add New Genre:</label>
+    <input type='text' name="genre[name]" id="new_landmark">
+
+    <input type="submit" value="Edit Artwork">
+
+  </form>

@@ -69,12 +69,8 @@ class ArtworkController <ApplicationController
       if @artwork.collector != Helpers.current_user(session)
         redirect to '/login'
       end
-      if !(params.has_value?(""))
-          @artwork.update(title: params[:title], artist: params[:artist], year: params[:year], materials: params[:materials], )
-          @artwork.save
-        else
-          redirect to "/artworks/#{@artwork.id}/edit"
-      end
+        @artwork.update(params[:artwork])
+        @artwork.save
       redirect to "/artworks/#{@artwork.id}"
     end
 
