@@ -10,6 +10,12 @@
 
 <br>
 <br>
+
+<form action='/genres/<%=@genre.id%>/delete' method='post'>
+  <input id="hidden" type="hidden" name="_method" value="delete"/>
+  <input type='submit' value='Delete Genre'>
+</form>
+
 <br>
 <form action= '/genres' method='get'>
     <input type='submit' value='Show All Genres' />

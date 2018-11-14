@@ -9,10 +9,19 @@ class GenreController <ApplicationController
     erb :'genres/show_genre'
   end
 
-  get '/genres/:id/delete' do
-    @genre = Genre.find_by_id(params[:id])
-    @genre.destroy
-    redirect to "/genres"
+
+  delete '/genres/:id/delete' do
+    if Helpers.is_logged_in?(session)
+      @genre = Genre.find_by_id(params[:id])
+    else
+      redirect to '/login'
+    end
+    if  @genre.artworks == []
+      @genre.destroy
+        redirect to '/genres'
+    else
+      redirect to "/genres"
+    end
   end
 
 end
