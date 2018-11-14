@@ -4,14 +4,20 @@
 <h4>Medium: <%=@artwork.materials%></h4>
 <h4>Genre: <a href='/genres/<%=@artwork.genre.id%>'><%=@artwork.genre.name%></a></h4>
 
-<br>
+<img src="https://i.imgur.com/A7vPnVp.jpg" title="madame x" /><br>
 
-<a href='/artworks/<%=@artwork.id%>/edit'>Edit</a>
+<form action='/artworks/<%=@artwork.id%>/edit' method="GET">
+  <input type='submit' value='Edit Artwork'>
+</form>
+<br>
 
 <form action='/artworks/<%=@artwork.id%>/delete' method='post'>
   <input id="hidden" type="hidden" name="_method" value="delete"/>
   <input type='submit' value='Delete Artwork'>
 </form>
+<br>
+<br>
+<br>
 
 <form action= '/genres' method='get'>
     <input type='submit' value='Show All Genres' />

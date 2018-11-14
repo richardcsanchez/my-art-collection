@@ -21,7 +21,7 @@
 
   <h4>Medium: <input type="text" name="artwork[materials]" placeholder="Medium"></h4>
 
-  <h4><label>Choose Genre: </label></h4>
+  <h4><label>Choose Genre: </label>(Choose One)</h4>
     <%Genre.all.each do |genre|%>
     <label><%=genre.name%></label>
     <input id='genre_<%=genre.id%>' type='checkbox' name='artwork[genre_id][]' value='<%= genre.id %>'>
@@ -33,6 +33,9 @@
     <br>
 
   <br>
+
+  <h4>Image Link: <input type="text" name="artwork[image]" placeholder="Image Link"></h4>
+
 
 
 	<input type="submit" value="Add Artwork">

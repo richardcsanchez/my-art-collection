@@ -21,6 +21,8 @@ class ArtworkController <ApplicationController
   get '/artworks/:id/edit' do
     if Helpers.is_logged_in?(session)
         @artwork = Artwork.find_by_id(params[:id])
+        @artists = Artist.all
+        @genres = Genre.all
      else
        redirect to '/login'
      end
@@ -51,7 +53,7 @@ class ArtworkController <ApplicationController
     redirect to "/artworks"
   end
 
-  delete '/artworks/:id/delete' do
+  get '/artworks/:id/delete' do
     if Helpers.is_logged_in?(session)
       @artwork = Artwork.find_by_id(params[:id])
     else
@@ -66,13 +68,30 @@ class ArtworkController <ApplicationController
   end
 
   patch '/artworks/:id' do
-      @artwork = Artwork.find_by_id(params[:id])
-      if @artwork.collector != Helpers.current_user(session)
-        redirect to '/login'
-      end
-        @artwork.update(params[:artwork])
-        @artwork.save
-      redirect to "/artworks/#{@artwork.id}"
+    @artwork = Artwork.find_by_id(params[:id])
+    binding.pry
+    if !params["artist"]["name"].empty?
+      @artwork.artist = Artist.new(params[:artist])
+    elsif params["artist"]["name"].empty?
+      artist = Artist.find_by_id(params[:artwork][:artist_id])
+      @artwork.artist_id = artist.id
+      @artwork.artist = artist
+    end
+    binding.pry
+    if !params["genre"]["name"].empty?
+      genre = Genre.new(params[:genre])
+      @artwork.genre_id = genre.id
+    elsif params["genre"]["name"].empty?
+       genre = Genre.find_by_id(params[:artwork][:genre_id])
+       @artwork.genre_id = genre.id
+       @artwork.genre = genre
+     end
+     binding.pry
+    @artwork.update(params[:artwork])
+    @artwork.save
+
+    binding.pry
+    redirect to "artworks/#{@artwork.id}"
     end
 
 end

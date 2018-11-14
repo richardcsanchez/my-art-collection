@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181113185828) do
+ActiveRecord::Schema.define(version: 20181114195558) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20181113185828) do
     t.integer "collector_id"
     t.integer "artist_id"
     t.integer "genre_id"
+    t.string  "image"
   end
 
   create_table "collectors", force: :cascade do |t|
