@@ -1,3 +1,4 @@
+<h2>Your Artworks:</h2>
 <%@artworks.each do |artwork|%>
   <%if artwork.collector == Helpers.current_user(session)%>
     <ul><%=artwork.artist.name%>: <%=artwork.title%>
