@@ -1,10 +1,8 @@
-<%@artworks = Artwork.all.sort_by {|a| a[:artist_id]}%>
 <%@artworks.each do |artwork|%>
   <%if artwork.collector == Helpers.current_user(session)%>
     <ul><%=artwork.artist.name%>: <%=artwork.title%>
     <a href='/artworks/<%=artwork.id%>'>View More</a> &nbsp; </ul>
     </form>
-  <%else nil%>
   <%end%>
 <%end%>
 

@@ -5,6 +5,8 @@ class ArtworkController <ApplicationController
       redirect to '/login'
     end
 
+    @artworks = Artwork.all.sort_by {|a| a.artist.name}
+    
     erb :'artworks/artwork'
   end
 
