@@ -4,6 +4,7 @@ class GenreController <ApplicationController
     if !Helpers.is_logged_in?(session)
       redirect to "/login"
     end
+
     erb :'genres/genres'
   end
 
@@ -11,7 +12,14 @@ class GenreController <ApplicationController
     if !Helpers.is_logged_in?(session)
       redirect to "/login"
     end
+
     @genre = Genre.find_by_id(params[:id])
+    @collector = Helpers.current_user(session)
+
+    if !@collector.genres.include?(@genre)
+      redirect to '/genres'
+    end
+    
     erb :'genres/show_genre'
   end
 
@@ -21,10 +29,12 @@ class GenreController <ApplicationController
     else
       redirect to '/login'
     end
+
     @collector = Helpers.current_user(session)
     if !@collector.genres.include?(@genre)
       redirect to '/genres'
     end
+
     if  @genre.artworks == []
       @genre.destroy
         redirect to '/genres'

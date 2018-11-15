@@ -19,12 +19,6 @@ get '/artists/:id' do
   erb :'artists/show_artist'
 end
 
-get '/artists/:id/delete' do
-  @artist = Artist.find_by_id(params[:id])
-
-  erb :'artists/edit_artist'
-end
-
 delete '/artists/:id/delete' do
   if Helpers.is_logged_in?(session)
     @artist = Artist.find_by_id(params[:id])

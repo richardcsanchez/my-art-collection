@@ -1,16 +1,16 @@
 <h2> All Artists </h2>
 
- <%Artwork.all.each do |artwork|%>
+ <!-- <%Artwork.all.each do |artwork|%>
   <%if artwork.collector == Helpers.current_user(session)%>
     <h4><ul><a href='/artists/<%=artwork.artist_id%>'><%=artwork.artist.name%></a></ul>
     <%end%>
-  <%end%>
-  <!-- <%Artist.all.each do |artist|%>
-  <a href='/artists/<%=artist.id%>'><%=artist.name%></a>
   <%end%> -->
+  <%Artist.all.each do |artist|%>
+    <ul><a href='/artists/<%=artist.id%>'><%=artist.name%></a></ul>
+  <%end%>
 
   <br><br>
-  
+
 <form action= '/genres' method='get'>
     <input type='submit' value='Show All Genres' />
   </form>
