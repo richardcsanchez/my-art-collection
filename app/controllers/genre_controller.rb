@@ -21,6 +21,10 @@ class GenreController <ApplicationController
     else
       redirect to '/login'
     end
+    @collector = Helpers.current_user(session)
+    if !@collector.genres.include?(@genre)
+      redirect to '/genres'
+    end
     if  @genre.artworks == []
       @genre.destroy
         redirect to '/genres'

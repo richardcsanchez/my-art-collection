@@ -22,6 +22,12 @@ class ArtworkController <ApplicationController
     end
 
     @artwork = Artwork.find_by_id(params[:id])
+    @collector = Helpers.current_user(session)
+
+    if !@collector.artworks.include?(@artwork)
+      redirect to '/artworks'
+    end
+
 
     erb :'artworks/show_artwork'
   end
@@ -34,12 +40,17 @@ class ArtworkController <ApplicationController
      else
        redirect to '/login'
      end
+
+     @collector = Helpers.current_user(session)
+     if !@collector.artworks.include?(@artwork)
+       redirect to '/artworks'
+     end
+
      erb :'artworks/edit_artwork'
   end
 
   post '/artworks' do
     @artwork = Artwork.new(params[:artwork])
-    ####### bug fix
     if !params["artist"]["name"].empty?
       @artwork.artist = Artist.create(params[:artist])
     elsif params["artist"]["name"].empty?
@@ -54,7 +65,6 @@ class ArtworkController <ApplicationController
        @genre = Genre.find_by_id(params[:artwork][:genre_id])
        @artwork.genre_id = @genre.id
      end
-     #######
 
     @artwork.collector = Helpers.current_user(session)
     @artwork.save

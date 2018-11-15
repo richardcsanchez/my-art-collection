@@ -11,6 +11,11 @@ end
 get '/artists/:id' do
   @artist = Artist.find_by_id(params[:id])
 
+  @collector = Helpers.current_user(session)
+  if !@collector.artists.include?(@artist)
+    redirect to '/artists'
+  end
+
   erb :'artists/show_artist'
 end
 
@@ -42,6 +47,11 @@ get '/artists/:id/edit' do
        redirect to '/login'
      end
 
+     @collector = Helpers.current_user(session)
+     if !@collector.artists.include?(@artist)
+       redirect to '/artists'
+     end
+
    erb :'artists/edit_artist'
  end
 
@@ -54,7 +64,7 @@ get '/artists/:id/edit' do
       else
         redirect to "/artists/#{@artist.id}/edit"
     end
-    
+
     redirect to "/artists/#{@artist.id}"
   end
 
