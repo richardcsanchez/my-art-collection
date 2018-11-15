@@ -10,11 +10,7 @@ class ApplicationController < Sinatra::Base
  end
 
   get '/' do
-    if Helpers.is_logged_in?(session)
-      collector = Helpers.current_user(session)
-      redirect to "/collectors/#{collector.slug}"
-    end
-    
+
     erb :index
   end
 
