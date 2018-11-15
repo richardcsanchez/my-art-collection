@@ -5,6 +5,8 @@ class GenreController <ApplicationController
       redirect to "/login"
     end
 
+    @genres = Genre.all.sort_by {|g| g.name}
+
     erb :'genres/genres'
   end
 
@@ -19,7 +21,7 @@ class GenreController <ApplicationController
     if !@collector.genres.include?(@genre)
       redirect to '/genres'
     end
-    
+
     erb :'genres/show_genre'
   end
 
