@@ -6,7 +6,7 @@
   <%end%>
   <%end%> -->
 
-  <%Artist.all.each do |artist|%>
+  <%@artists.each do |artist|%>
     <ul><a href='/artists/<%=artist.id%>'><%=artist.name%></a></ul>
   <%end%>
 
