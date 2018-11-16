@@ -1,8 +1,11 @@
 <h2> All Genres </h2>
 
 <%@genres.each do |genre|%>
-  <h4><ul><a href='genres/<%=genre.id%>'><%=genre.name%></a></ul></h4>
+  <%if genre.collectors.uniq.include?(@collector)%>
+    <h4><ul><a href='genres/<%=genre.id%>'><%=genre.name%></a></ul></h4>
+  <%end%>
 <%end%>
+
 
 
 <br>

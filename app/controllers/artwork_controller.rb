@@ -6,7 +6,6 @@ class ArtworkController <ApplicationController
     end
 
     @artworks = Artwork.all.sort_by {|a| a.artist.name}
-    @collector = Helpers.current_user(session)
 
     erb :'artworks/artwork'
   end

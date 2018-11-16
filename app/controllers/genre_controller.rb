@@ -6,6 +6,7 @@ class GenreController <ApplicationController
     end
 
     @genres = Genre.all.sort_by {|g| g.name}
+    @collector = Helpers.current_user(session)
 
     erb :'genres/genres'
   end

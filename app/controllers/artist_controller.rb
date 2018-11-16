@@ -4,8 +4,9 @@ get '/artists' do
   if !Helpers.is_logged_in?(session)
     redirect to '/'
   end
-  
+
   @artists = Artist.all.sort_by {|a| a.name}
+  @collector = Helpers.current_user(session)
 
   erb :'artists/artists'
 end
