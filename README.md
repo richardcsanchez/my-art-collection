@@ -9,12 +9,16 @@ $ git clone git@github.com:kittycharles/my-art-catalogue.git
 And then execute:
 
     $ bundle install
+    
+    $ shotgun
+    
 
 ## Usage
 
 On the Homepage, you are given options to Login or Sign Up.
 
 If do not wish to create your own account, use the following username and password to see a "Test" account.
+
 Username: Kitty
 Password: cat
 
