@@ -9,7 +9,9 @@
   <%end%> -->
 
   <%@artists.each do |artist|%>
+    <%if artist.collectors.uniq.include?(Helpers.current_user(session))%>
     <ul><h4><a href='/artists/<%=artist.id%>'><%=artist.name%></a></h4></ul>
+  <%end%>
   <%end%>
 
   <br><br>
