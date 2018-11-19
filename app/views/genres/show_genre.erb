@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <h2> <%=@genre.name%> </h2>
 <%Artwork.all.each do |artwork|%>
   <%if artwork.genre == @genre && artwork.collector == Helpers.current_user(session)%>

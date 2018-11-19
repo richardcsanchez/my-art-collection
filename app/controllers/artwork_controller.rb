@@ -83,7 +83,6 @@ class ArtworkController <ApplicationController
     if Helpers.is_logged_in?(session)
       @artwork = Artwork.find_by_id(params[:id])
     else
-      flash[:message] = "Please log in to perform this action."
       redirect to '/login'
     end
 
