@@ -44,7 +44,7 @@ delete '/artists/:id/delete' do
   else
     redirect to '/login'
   end
-  
+
   @collector = Helpers.current_user(session)
   if !@collector.artists.include?(@artist)
     flash[:message] = "Error: Unable to access artist"
@@ -85,6 +85,7 @@ get '/artists/:id/edit' do
         @artist.update(name: params["name"], bio: params["bio"], associated_movements: params["associated_movements"])
         @artist.save
       else
+        flash[:message] = "Error: Unable to update artist"
         redirect to "/artists/#{@artist.id}/edit"
     end
 

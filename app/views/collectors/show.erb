@@ -2,6 +2,9 @@
 <h2> Welcome <%=@collector.username%></h2>
 
 <h4>Email: <%=@collector.email%></h4>
+<form action= '/collectors/<%=@collector.id%>/edit' method='get'>
+    <input type='submit' value='Edit Profile' />
+  </form>
 
 <br>
 
