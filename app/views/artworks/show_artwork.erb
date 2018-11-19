@@ -1,7 +1,3 @@
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-<% end %>
-
 <h2>Title: <%=@artwork.title%></h2><br>
 <h3>Artist: <a href='/artists/<%=@artwork.artist.id%>'><%=@artwork.artist.name%></a></h3>
 <h4>Year: <%=@artwork.year%></h4>

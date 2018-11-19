@@ -4,11 +4,13 @@
     <title>My Art Collection</title>
   </head>
   <body>
-
     <div class="container">
       <h1>My Art Collection</h1>
     </div>
-    <br>
+    <%if flash.has?(:message) %>
+      <%= flash[:message] %>
+    <% end %>
+        <br>
     <%= yield %>
 
 

@@ -20,11 +20,23 @@ class CollectorsController <ApplicationController
     end
   end
 
-  get '/collectors/:slug' do
-    if Helpers.is_logged_in?(session)
-      @collector = Collector.find_by_slug(params[:slug])
-    else
+  get '/collector' do
+    @collector = Helpers.current_user(session)
+    if !Helpers.is_logged_in?(session)
+      flash[:message] = "Please log in to view this page."
       redirect to '/login'
+    end
+    redirect to "/collectors/#{@collector.slug}"
+  end
+
+  get '/collectors/:slug' do
+    @collector = Helpers.current_user(session)
+    if !Helpers.is_logged_in?(session)
+      flash[:message] = "Please log in to view this page."
+      redirect to '/login'
+    elsif Collector.find_by_slug(params[:slug]) != @collector
+      flash[:message] = "You cannot view this user's page"
+      redirect to "/collectors/#{@collector.slug}"
     end
 
     erb :'/collectors/show'

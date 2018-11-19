@@ -10,7 +10,7 @@ def self.current_user(session)
 
  def self.show_links(session)
    if !!Collector.find_by_id(session[:collector_id])
-      "<form action= '/collectors/:slug' method='get'>
+      "<form action= '/collector' method='get'>
         <input type='submit' value='Your Homepage' /></form>
         <br>
       <form action= '/logout' method='get'>
@@ -18,6 +18,7 @@ def self.current_user(session)
       	</form>"
     end
  end
+
 
 
  end
