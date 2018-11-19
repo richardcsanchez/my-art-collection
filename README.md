@@ -1,10 +1,12 @@
 # My Art Catalogue
 This Sinatra App allows the user to add, store, view, and edit their art collection, organized by Artwork, Artist, or Genre. 
+
 ## Installation
 
 To clone the project and get started, enter the following code into your terminal.
-
-$ git clone git@github.com:kittycharles/my-art-catalogue.git
+```
+    $ git clone git@github.com:kittycharles/my-art-catalogue.git
+```
 
 And then execute:
 
@@ -20,6 +22,7 @@ On the Homepage, you are given options to Login or Sign Up.
 If do not wish to create your own account, use the following username and password to see a "Test" account.
 
 Username: Kitty
+
 Password: cat
 
 After logging in, or signing up, you will be directed to your collector page. You are given options to add to your collection, or view your collection by Artworks, Artist, or Genre.
@@ -37,7 +40,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/'kitty
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+The app is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Code of Conduct
 
