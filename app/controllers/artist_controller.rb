@@ -8,7 +8,7 @@ get '/artists' do
   @collector = Helpers.current_user(session)
   artists = @collector.artworks.collect {|artwork| artwork.artist}.uniq
   @sorted_artists = artists.sort_by {|a| a.name}
-  
+
   erb :'artists/artists'
 end
 
@@ -16,6 +16,7 @@ get '/artists/:id' do
   @artist = Artist.find_by_id(params[:id])
 
   @collector = Helpers.current_user(session)
+  
   if !@collector.artists.include?(@artist)
     redirect to '/artists'
   end
