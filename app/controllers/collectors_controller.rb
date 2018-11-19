@@ -33,10 +33,8 @@ class CollectorsController <ApplicationController
   get "/logout" do
     if Helpers.is_logged_in?(session)
       session.clear
-    else
-      redirect to "/"
     end
-
+    flash[:message] = "You've logged out"
     redirect to '/'
   end
 

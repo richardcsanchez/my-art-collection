@@ -8,9 +8,12 @@ def self.current_user(session)
    !!Collector.find_by_id(session[:collector_id])
  end
 
- def self.show_logout(session)
+ def self.show_links(session)
    if !!Collector.find_by_id(session[:collector_id])
-      "<form action= '/logout' method='get'>
+      "<form action= '/collectors/:slug' method='get'>
+        <input type='submit' value='Your Homepage' /></form>
+        <br>
+      <form action= '/logout' method='get'>
       		<input type='submit' value='Logout' />
       	</form>"
     end
