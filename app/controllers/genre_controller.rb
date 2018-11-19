@@ -5,9 +5,11 @@ class GenreController <ApplicationController
       redirect to "/login"
     end
 
-    @genres = Genre.all.sort_by {|g| g.name}
     @collector = Helpers.current_user(session)
-    binding.pry
+    @genres = @collector.artworks.collect {|artwork| artwork.genre}.uniq
+    @sorted_genres = @genres.sort_by {|g| g.name}
+
+
     erb :'genres/genres'
   end
 

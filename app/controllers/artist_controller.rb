@@ -5,9 +5,10 @@ get '/artists' do
     redirect to '/'
   end
 
-  @artists = Artist.all.sort_by {|a| a.name}
   @collector = Helpers.current_user(session)
-
+  artists = @collector.artworks.collect {|artwork| artwork.artist}.uniq
+  @sorted_artists = artists.sort_by {|a| a.name}
+  
   erb :'artists/artists'
 end
 

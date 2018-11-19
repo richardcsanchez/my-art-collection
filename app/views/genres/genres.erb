@@ -1,15 +1,11 @@
 <h2> All Genres </h2>
 
-<%@genres.each do |genre|%>
-  <%if genre.collectors.uniq.include?(@collector)%>
-    <h4><ul><a href='genres/<%=genre.id%>'><%=genre.name%></a></ul></h4>
-  <%end%>
+<%@sorted_genres.each do |genre| %>
+<h4><ul><a href='genres/<%=genre.id%>'><%=genre.name%></a></ul></h4>
 <%end%>
 
+<br><br>
 
-
-<br>
-<br>
 <form action= '/artworks' method='get'>
     <input type='submit' value='Show All Artworks' />
   </form>

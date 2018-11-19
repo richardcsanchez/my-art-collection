@@ -1,14 +1,10 @@
 <h2> All Artists </h2>
 
-  <%@artists.each do |artist|%>
-    <%if artist.collectors.uniq.include?(@collector)%>
-    <ul><h4><a href='/artists/<%=artist.id%>'><%=artist.name%></a></h4></ul>
-  <%end%>
+  <%@sorted_artists.each do |artist| %>
+  <h4><ul><a href='genres/<%=artist.id%>'><%=artist.name%></a></ul></h4>
   <%end%>
 
   <br><br>
 
-<form action= '/genres' method='get'>
-    <input type='submit' value='Show All Genres' />
-  </form>
-<form action= '/artworks' method='get'> <input type='submit' value='Show All Artworks' /> </form>
+<form action= '/genres' method='get'> <input type='submit' value='Show All Genres' /></form>
+<form action= '/artworks' method='get'> <input type='submit' value='Show All Artworks' /></form>
