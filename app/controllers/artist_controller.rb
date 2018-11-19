@@ -13,6 +13,14 @@ get '/artists' do
   erb :'artists/artists'
 end
 
+get '/artists/master' do
+  if !Helpers.is_logged_in?(session)
+    flash[:message] = "Please log in to view this page."
+    redirect to '/'
+  end
+  erb :'artists/artist_master'
+end
+
 get '/artists/:id' do
   if !Helpers.is_logged_in?(session)
     flash[:message] = "Please log in to view this page."
@@ -30,18 +38,24 @@ get '/artists/:id' do
   erb :'artists/show_artist'
 end
 
-get '/artists/:id/delete' do
+delete '/artists/:id/delete' do
   if Helpers.is_logged_in?(session)
     @artist = Artist.find_by_id(params[:id])
   else
     redirect to '/login'
+  end
+  
+  @collector = Helpers.current_user(session)
+  if !@collector.artists.include?(@artist)
+    flash[:message] = "Error: Unable to access artist"
+    redirect to '/artists'
   end
 
   if  @artist.artworks == []
     @artist.destroy
       redirect to '/artists'
   else
-    "Error: Artist cannot be deleted at this time.
+    flash[:message] = "Error: Artist cannot be deleted at this time.
     Delete or edit all associated artworks first."
     redirect to "/artists"
   end

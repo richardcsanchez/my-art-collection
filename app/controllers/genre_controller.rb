@@ -14,6 +14,14 @@ class GenreController <ApplicationController
     erb :'genres/genres'
   end
 
+  get '/genres/master' do
+    if !Helpers.is_logged_in?(session)
+      flash[:message] = "Please log in to view this page."
+      redirect to '/'
+    end
+    erb :'genres/genre_master'
+  end
+
   get '/genres/:id' do
     if !Helpers.is_logged_in?(session)
       flash[:message] = "Please log in to view this page."
@@ -38,17 +46,11 @@ class GenreController <ApplicationController
       redirect to '/login'
     end
 
-    @collector = Helpers.current_user(session)
-    if !@collector.genres.include?(@genre)
-      flash[:message] = "Error: Unable to access genre"
-      redirect to '/genres'
-    end
-
     if  @genre.artworks == []
       @genre.destroy
         redirect to '/genres'
     else
-      flash[:message] = 
+      flash[:message] =
         "Error: Genre cannot be deleted at this time.
         Delete or edit all associated artworks first."
       redirect to "/genres"
