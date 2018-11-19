@@ -5,7 +5,7 @@ This Sinatra App allows the user to add, store, view, and edit their art collect
 
 To clone the project and get started, enter the following code into your terminal.
 ```
-    $ git clone git@github.com:kittycharles/my-art-catalogue.git
+$ git clone git@github.com:kittycharles/my-art-catalogue.git
 ```
 
 And then execute:
