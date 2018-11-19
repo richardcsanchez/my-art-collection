@@ -7,7 +7,7 @@ class GenreController <ApplicationController
 
     @genres = Genre.all.sort_by {|g| g.name}
     @collector = Helpers.current_user(session)
-
+    binding.pry
     erb :'genres/genres'
   end
 
