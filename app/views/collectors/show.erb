@@ -5,6 +5,11 @@
 <form action= '/collectors/<%=@collector.id%>/edit' method='get'>
     <input type='submit' value='Edit Profile' />
   </form>
+  <br>
+  <form action='/collectors/<%=@collector.id%>/delete' method='post'>
+    <input id="hidden" type="hidden" name="_method" value="delete"/>
+    <input type='submit' value='Delete Profile'>
+  </form>
 
 <br>
 
