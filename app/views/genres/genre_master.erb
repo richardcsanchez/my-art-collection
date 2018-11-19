@@ -1,0 +1,9 @@
+<h2>All Genres in Database</h2>
+<%Genre.all.each do |genre|%>
+<ul><%=genre.name%>
+  <form action='/genres/<%=genre.id%>/delete' method='post'>
+    <input id="hidden" type="hidden" name="_method" value="delete"/>
+    <input type='submit' value='Delete Genre'>
+  </form>
+</ul>
+<%end%>
