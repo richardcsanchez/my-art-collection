@@ -2,6 +2,7 @@ class ArtworkController <ApplicationController
 
   get '/artworks' do
     if !Helpers.is_logged_in?(session)
+      flash[:message] = "Please log in to view this page."
       redirect to '/login'
     end
 
@@ -12,6 +13,7 @@ class ArtworkController <ApplicationController
 
   get '/artworks/new' do
     if !Helpers.is_logged_in?(session)
+      flash[:message] = "Please log in to view this page."
       redirect to "/login"
     end
 
@@ -20,6 +22,7 @@ class ArtworkController <ApplicationController
 
   get '/artworks/:id' do
     if !Helpers.is_logged_in?(session)
+      flash[:message] = "Please log in to view this page."
       redirect to "/login"
     end
 
@@ -27,9 +30,9 @@ class ArtworkController <ApplicationController
     @collector = Helpers.current_user(session)
 
     if !@collector.artworks.include?(@artwork)
+      flash[:message] = "Error: Artwork not in your collection."
       redirect to '/artworks'
     end
-
 
     erb :'artworks/show_artwork'
   end
@@ -40,11 +43,13 @@ class ArtworkController <ApplicationController
         @artists = Artist.all
         @genres = Genre.all
      else
+       flash[:message] = "Please log in to view this page."
        redirect to '/login'
      end
 
      @collector = Helpers.current_user(session)
      if !@collector.artworks.include?(@artwork)
+       flash[:message] = "Error: Artwork not in your collection."
        redirect to '/artworks'
      end
 
@@ -78,6 +83,7 @@ class ArtworkController <ApplicationController
     if Helpers.is_logged_in?(session)
       @artwork = Artwork.find_by_id(params[:id])
     else
+      flash[:message] = "Please log in to perform this action."
       redirect to '/login'
     end
 

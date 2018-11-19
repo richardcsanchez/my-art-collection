@@ -15,6 +15,7 @@ class CollectorsController <ApplicationController
       session["collector_id"] = @collector.id
       redirect to "/collectors/#{@collector.slug}"
     else
+      flash[:message] = "Sign-up failed. Please try again."
       redirect to '/signup'
     end
   end
