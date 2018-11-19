@@ -1,7 +1,11 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <h2> All Artists </h2>
 
   <%@sorted_artists.each do |artist| %>
-  <h4><ul><a href='genres/<%=artist.id%>'><%=artist.name%></a></ul></h4>
+  <h4><ul><a href='artists/<%=artist.id%>'><%=artist.name%></a></ul></h4>
   <%end%>
 
   <br><br>

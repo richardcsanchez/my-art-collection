@@ -2,6 +2,7 @@ class ArtistController <ApplicationController
 
 get '/artists' do
   if !Helpers.is_logged_in?(session)
+    flash[:message] = "Please log in to view this page."
     redirect to '/'
   end
 
@@ -13,11 +14,16 @@ get '/artists' do
 end
 
 get '/artists/:id' do
-  @artist = Artist.find_by_id(params[:id])
+  if !Helpers.is_logged_in?(session)
+    flash[:message] = "Please log in to view this page."
+    redirect to "/login"
+  end
 
+  @artist = Artist.find_by_id(params[:id])
   @collector = Helpers.current_user(session)
-  
+
   if !@collector.artists.include?(@artist)
+    flash[:message] = "Error: Unable to access artist"
     redirect to '/artists'
   end
 
@@ -35,6 +41,8 @@ delete '/artists/:id/delete' do
     @artist.destroy
       redirect to '/artists'
   else
+    "Error: Artist cannot be deleted at this time.
+    Delete or edit all associated artworks first."
     redirect to "/artists"
   end
 end
@@ -43,11 +51,13 @@ get '/artists/:id/edit' do
      if Helpers.is_logged_in?(session)
        @artist = Artist.find_by_id(params[:id])
      else
+       flash[:message] = "Please log in to view this page."
        redirect to '/login'
      end
 
      @collector = Helpers.current_user(session)
      if !@collector.artists.include?(@artist)
+       flash[:message] = "Error: Unable to access artist"
        redirect to '/artists'
      end
 
