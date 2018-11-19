@@ -10,12 +10,10 @@ def self.current_user(session)
 
  def self.show_logout(session)
    if !!Collector.find_by_id(session[:collector_id])
-      "  <form action= '/logout' method='get'>
+      "<form action= '/logout' method='get'>
       		<input type='submit' value='Logout' />
       	</form>"
-   elsif !Collector.find_by_id(session[:user_id])
-      nil
-   end
+    end
  end
 
 
