@@ -19,6 +19,7 @@ class GenreController <ApplicationController
       flash[:message] = "Please log in to view this page."
       redirect to '/'
     end
+    @genres = Genre.all.sort_by {|g| g.name}
     erb :'genres/genre_master'
   end
 

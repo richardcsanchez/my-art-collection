@@ -18,6 +18,7 @@ get '/artists/master' do
     flash[:message] = "Please log in to view this page."
     redirect to '/'
   end
+  @artists = Artist.all.sort_by {|a| a.name}
   erb :'artists/artist_master'
 end
 
@@ -47,7 +48,7 @@ delete '/artists/:id/delete' do
 
   if  @artist.artworks == []
     @artist.destroy
-      redirect to '/artists'
+      redirect to '/artists/master'
   else
     flash[:message] = "Error: Artist cannot be deleted at this time.
     Delete or edit all associated artworks first."
