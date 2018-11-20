@@ -76,7 +76,7 @@ class ArtworkController <ApplicationController
     @artwork.collector = Helpers.current_user(session)
     @artwork.save
 
-    redirect to "/artworks"
+    redirect to "/artworks/#{@artwork.id}"
   end
 
   delete '/artworks/:id/delete' do

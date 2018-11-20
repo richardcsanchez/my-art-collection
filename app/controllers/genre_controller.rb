@@ -49,12 +49,12 @@ class GenreController <ApplicationController
 
     if  @genre.artworks == []
       @genre.destroy
-        redirect to '/genres'
+        redirect to '/genres/master'
     else
       flash[:message] =
         "Error: Genre cannot be deleted at this time.
         Delete or edit all associated artworks first."
-      redirect to "/genres"
+      redirect to "/genres/master"
     end
   end
 

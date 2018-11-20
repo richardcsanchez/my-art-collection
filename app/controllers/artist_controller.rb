@@ -52,7 +52,7 @@ delete '/artists/:id/delete' do
   else
     flash[:message] = "Error: Artist cannot be deleted at this time.
     Delete or edit all associated artworks first."
-    redirect to "/artists"
+    redirect to "/artists/master"
   end
 end
 
@@ -75,7 +75,6 @@ get '/artists/:id/edit' do
 
  patch '/artists/:id' do
     @artist = Artist.find_by_id(params[:id])
-binding.pry
     if !(params.has_value?(""))
         @artist.update(name: params["name"], bio: params["bio"], associated_movements: params["associated_movements"])
         @artist.save
