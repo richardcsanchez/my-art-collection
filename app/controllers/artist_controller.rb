@@ -45,12 +45,6 @@ delete '/artists/:id/delete' do
     redirect to '/login'
   end
 
-  @collector = Helpers.current_user(session)
-  if !@collector.artists.include?(@artist)
-    flash[:message] = "Error: Unable to access artist"
-    redirect to '/artists'
-  end
-
   if  @artist.artworks == []
     @artist.destroy
       redirect to '/artists'
@@ -80,7 +74,7 @@ get '/artists/:id/edit' do
 
  patch '/artists/:id' do
     @artist = Artist.find_by_id(params[:id])
-
+binding.pry
     if !(params.has_value?(""))
         @artist.update(name: params["name"], bio: params["bio"], associated_movements: params["associated_movements"])
         @artist.save
