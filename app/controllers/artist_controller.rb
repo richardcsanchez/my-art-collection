@@ -11,19 +11,14 @@ get '/artists' do
 end
 
 get '/artists/master' do
-  if !Helpers.is_logged_in?(session)
-    flash[:message] = "Please log in to view this page."
-    redirect to '/'
-  end
+  redirect_if_not_logged_in
+
   @artists = Artist.all.sort_by {|a| a.name}
   erb :'artists/artist_master'
 end
 
 get '/artists/:id' do
-  if !Helpers.is_logged_in?(session)
-    flash[:message] = "Please log in to view this page."
-    redirect to "/login"
-  end
+  redirect_if_not_logged_in
 
   @artist = Artist.find_by_id(params[:id])
   @collector = Helpers.current_user(session)
@@ -37,11 +32,7 @@ get '/artists/:id' do
 end
 
 delete '/artists/:id/delete' do
-  if Helpers.is_logged_in?(session)
-    @artist = Artist.find_by_id(params[:id])
-  else
-    redirect to '/login'
-  end
+  redirect_if_not_logged_in
 
   if  @artist.artworks == []
     @artist.destroy
@@ -54,12 +45,7 @@ delete '/artists/:id/delete' do
 end
 
 get '/artists/:id/edit' do
-     if Helpers.is_logged_in?(session)
-       @artist = Artist.find_by_id(params[:id])
-     else
-       flash[:message] = "Please log in to view this page."
-       redirect to '/login'
-     end
+     redirect_if_not_logged_in
 
      @collector = Helpers.current_user(session)
      if !@collector.artists.include?(@artist)
@@ -75,7 +61,7 @@ get '/artists/:id/edit' do
 
     @artist = Artist.find_by_id(params[:id])
     @collector = Helpers.current_user(session)
-    
+
     if !@collector.artists.include?(@artist)
       flash[:message] = "Error: Unable to access artist"
       redirect to '/artists'

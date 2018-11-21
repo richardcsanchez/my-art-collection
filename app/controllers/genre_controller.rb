@@ -1,10 +1,8 @@
 class GenreController <ApplicationController
 
   get '/genres' do
-    if !Helpers.is_logged_in?(session)
-      flash[:message] = "Please log in to view this page."
-      redirect to "/login"
-    end
+    redirect_if_not_logged_in
+
 
     @collector = Helpers.current_user(session)
     @genres = @collector.artworks.collect {|artwork| artwork.genre}.uniq
@@ -15,19 +13,15 @@ class GenreController <ApplicationController
   end
 
   get '/genres/master' do
-    if !Helpers.is_logged_in?(session)
-      flash[:message] = "Please log in to view this page."
-      redirect to '/'
-    end
+    redirect_if_not_logged_in
+
     @genres = Genre.all.sort_by {|g| g.name}
     erb :'genres/genre_master'
   end
 
   get '/genres/:id' do
-    if !Helpers.is_logged_in?(session)
-      flash[:message] = "Please log in to view this page."
-      redirect to "/login"
-    end
+    redirect_if_not_logged_in
+
 
     @genre = Genre.find_by_id(params[:id])
     @collector = Helpers.current_user(session)

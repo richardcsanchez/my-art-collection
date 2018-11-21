@@ -21,20 +21,17 @@ class CollectorsController <ApplicationController
   end
 
   get '/collector' do
+    redirect_if_not_logged_in
+
     @collector = Helpers.current_user(session)
-    if !Helpers.is_logged_in?(session)
-      flash[:message] = "Please log in to view this page."
-      redirect to '/login'
-    end
+
     redirect to "/collectors/#{@collector.slug}"
   end
 
   get '/collectors/:slug' do
     @collector = Helpers.current_user(session)
 
-    if !Helpers.is_logged_in?(session)
-      flash[:message] = "Please log in to view this page."
-      redirect to '/login'
+    if redirect_if_not_logged_in
     elsif Collector.find_by_slug(params[:slug]) != @collector
       flash[:message] = "You cannot view this user's page"
       redirect to "/collectors/#{@collector.slug}"
@@ -56,12 +53,9 @@ class CollectorsController <ApplicationController
   end
 
   delete '/collectors/:slug/delete' do
-    @collector = Helpers.current_user(session)
+    redirect_if_not_logged_in
 
-    if !Helpers.is_logged_in?(session)
-      flash[:message]= "Please login to perform this action"
-      redirect to '/login'
-    end
+    @collector = Helpers.current_user(session)
 
     if Collector.find_by_slug(@collector.slug) == Helpers.current_user(session)
       @collector.delete
@@ -73,6 +67,8 @@ class CollectorsController <ApplicationController
   end
 
   patch '/collectors/:id' do
+    redirect_if_not_logged_in
+
     @collector = Collector.find_by_id(params[:id])
     if !(params.has_value?("")) && (params[:email].include?("@"))
       @collector.update(email: params["email"], username: params["username"], password: params["password"])

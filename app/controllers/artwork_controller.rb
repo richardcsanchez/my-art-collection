@@ -1,10 +1,7 @@
 class ArtworkController <ApplicationController
 
   get '/artworks' do
-    if !Helpers.is_logged_in?(session)
-      flash[:message] = "Please log in to view this page."
-      redirect to '/login'
-    end
+    redirect_if_not_logged_in
 
     @artworks = Artwork.all.sort_by {|a| a.artist.name}
 
@@ -12,19 +9,13 @@ class ArtworkController <ApplicationController
   end
 
   get '/artworks/new' do
-    if !Helpers.is_logged_in?(session)
-      flash[:message] = "Please log in to view this page."
-      redirect to "/login"
-    end
+    redirect_if_not_logged_in
 
     erb :'artworks/create_artwork'
   end
 
   get '/artworks/:id' do
-    if !Helpers.is_logged_in?(session)
-      flash[:message] = "Please log in to view this page."
-      redirect to "/login"
-    end
+    redirect_if_not_logged_in
 
     @artwork = Artwork.find_by_id(params[:id])
     @collector = Helpers.current_user(session)
@@ -57,6 +48,8 @@ class ArtworkController <ApplicationController
   end
 
   post '/artworks' do
+    redirect_if_not_logged_in
+
     @collector = Helpers.current_user(session)
     @artwork = @collector.artworks.build(params[:artwork])
     if !params["artist"]["name"].empty?
@@ -81,11 +74,7 @@ class ArtworkController <ApplicationController
   end
 
   delete '/artworks/:id/delete' do
-    if Helpers.is_logged_in?(session)
-      @artwork = Artwork.find_by_id(params[:id])
-    else
-      redirect to '/login'
-    end
+    redirect_if_not_logged_in
 
     if @artwork.collector == Helpers.current_user(session)
       @artwork.delete
@@ -100,7 +89,7 @@ class ArtworkController <ApplicationController
 
     @artwork = Artwork.find_by_id(params[:id])
     @collector = Helpers.current_user(session)
-    
+
     if !@collector.artworks.include?(@artwork)
       flash[:message] = "Error: Unable to access artwork"
       redirect to '/artworks'
