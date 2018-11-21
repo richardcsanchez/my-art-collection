@@ -1,10 +1,7 @@
 class ArtistController <ApplicationController
 
 get '/artists' do
-  if !Helpers.is_logged_in?(session)
-    flash[:message] = "Please log in to view this page."
-    redirect to '/'
-  end
+  redirect_if_not_logged_in
 
   @collector = Helpers.current_user(session)
   artists = @collector.artworks.collect {|artwork| artwork.artist}.uniq
@@ -74,7 +71,16 @@ get '/artists/:id/edit' do
  end
 
  patch '/artists/:id' do
+   redirect_if_not_logged_in
+
     @artist = Artist.find_by_id(params[:id])
+    @collector = Helpers.current_user(session)
+    
+    if !@collector.artists.include?(@artist)
+      flash[:message] = "Error: Unable to access artist"
+      redirect to '/artists'
+    end
+
     if !(params.has_value?(""))
         @artist.update(name: params["name"], bio: params["bio"], associated_movements: params["associated_movements"])
         @artist.save

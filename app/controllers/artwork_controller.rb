@@ -57,7 +57,8 @@ class ArtworkController <ApplicationController
   end
 
   post '/artworks' do
-    @artwork = Artwork.new(params[:artwork])
+    @collector = Helpers.current_user(session)
+    @artwork = @collector.artworks.build(params[:artwork])
     if !params["artist"]["name"].empty?
       @artwork.artist = Artist.create(params[:artist])
     elsif params["artist"]["name"].empty?
@@ -73,7 +74,7 @@ class ArtworkController <ApplicationController
        @artwork.genre_id = @genre.id
      end
 
-    @artwork.collector = Helpers.current_user(session)
+    # @artwork.collector = Helpers.current_user(session)
     @artwork.save
 
     redirect to "/artworks/#{@artwork.id}"
@@ -95,7 +96,16 @@ class ArtworkController <ApplicationController
   end
 
   patch '/artworks/:id' do
+    redirect_if_not_logged_in
+
     @artwork = Artwork.find_by_id(params[:id])
+    @collector = Helpers.current_user(session)
+    
+    if !@collector.artworks.include?(@artwork)
+      flash[:message] = "Error: Unable to access artwork"
+      redirect to '/artworks'
+    end
+
 
     if !params["artist"]["name"].empty?
       @artwork.artist = Artist.create(params[:artist])
