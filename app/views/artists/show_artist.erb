@@ -1,34 +1,23 @@
 <h2><%=@artist.name%></h2>
-<br>
 <h4>About the Artist:</h4>
 <p><%=@artist.bio%></p>
 <h4>Associated Movements:</h4>
 <p><%=@artist.associated_movements%></p>
-
+<br>
 <form action= '/artists/<%=@artist.id%>/edit' method='get'>
     <input type='submit' value='Edit Artist' />
   </form>
-
+<br>
 <h4>Artworks by <%=@artist.name%>:</h4>
 
 <%Artwork.all.each do |artwork|%>
   <%if artwork.artist == @artist && artwork.collector == Helpers.current_user(session)%>
-      <ul><%=artwork.artist.name%>:
-      <a href='/artworks/<%=artwork.id%>'><%=artwork.title%></a> -
-      <a href='/genres/<%=artwork.genre.id%>'><%=artwork.genre.name%></a></ul>
-    <%@artist.genres%>
+    <a class="art-index-list" href='/artworks/<%=artwork.id%>'>
+        <div>
+          <img class="small-image" src="<%=artwork.image%>" alt="<%=artwork.title%>" />
+            <br>
+          <p class="artwork-title"><%=artwork.title%></p>
+        </div>
+     </a>
     <%end%>
 <%end%>
-
-
-<br><br><br>
-
-<form action= '/artworks' method='get'>
-    <input type='submit' value='Show All Artworks' />
-  </form>
-<form action= '/artists' method='get'>
-    <input type='submit' value='Show All Artists' />
-  </form>
-<form action= '/genres' method='get'>
-    <input type='submit' value='Show All Genres' />
-  </form>

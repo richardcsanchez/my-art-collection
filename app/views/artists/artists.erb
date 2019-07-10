@@ -1,9 +1,11 @@
 <h2> All Artists </h2>
 
   <%@sorted_artists.each do |artist| %>
-  <h4><ul><a href='artists/<%=artist.id%>'><%=artist.name%></a></ul></h4>
+  <ul>
+    <a class="index-list" href='artists/<%=artist.id%>'>
+        <p><%=artist.name%></p>
+    </a>
+  </ul>
   <%end%>
 
   <br><br>
-<form action= '/genres' method='get'> <input type='submit' value='Show All Genres' /></form>
-<form action= '/artworks' method='get'> <input type='submit' value='Show All Artworks' /></form>
