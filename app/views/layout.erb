@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-  
+
     <link href="/css/style.css" rel="stylesheet" type="text/css" />
 
     <title>My Art Collection</title>
@@ -10,6 +10,7 @@
     <div class="container">
       <h1>My Art Collection</h1>
     </div>
+    <%=Helpers.show_links(session)%>
     <%if flash.has?(:message) %>
       <%= flash[:message] %>
     <% end %>
@@ -19,6 +20,5 @@
 
   <br><br>
 
-    <%=Helpers.show_links(session)%>
       </body>
     </html>
