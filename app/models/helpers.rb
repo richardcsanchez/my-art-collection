@@ -11,10 +11,18 @@ def self.current_user(session)
  def self.show_links(session)
    if !!Collector.find_by_id(session[:collector_id])
       "<form action= '/collector' method='get'>
-        <input type='submit' value='Your Homepage' /></form>
-        <br>
+          <input  type='submit' value='Your Homepage' />  </form>
+        <form action= '/artworks' method='get'>
+            <input  type='submit' value='All Artworks' />
+          </form>
+          <form action= '/artists' method='get'>
+              <input  type='submit' value='All Artists' />
+            </form>
+        <form action= '/genres' method='get'>
+            <input  type='submit' value='All Genres' />
+          </form>
       <form action= '/logout' method='get'>
-      		<input type='submit' value='Logout' />
+      		<input  type='submit' value='Logout' />
       	</form>"
     end
  end
