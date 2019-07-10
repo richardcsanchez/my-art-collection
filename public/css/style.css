@@ -1,0 +1,92 @@
+header li a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+header  li a:hover {
+  background-color: #111;
+}
+
+header li a.active {
+  background-color: #111;
+}
+
+.large-image {
+  float: left;
+  padding: 5px;
+  max-width: 550px;
+  max-height: 550px;
+  width: auto;
+  height: auto;
+  padding-right: 15px
+}
+
+.artwork-card  {
+  vertical-align: middle;
+  display: block;
+  height: 550px;
+}
+
+.small-image {
+  float: left;
+  padding: 5px;
+  max-width: 150px;
+  max-height: 106px;
+  width: auto;
+  height: auto;
+}
+
+.art-index-list {
+  vertical-align: middle;
+  background-color: white;
+  border: 2px solid black;
+  cursor: pointer;
+  width: 30%;
+  height: 115px;
+  display: block;
+
+}
+
+.artwork-title {
+  font-style: italic;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+
+h1 {
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+}
+
+h3 { font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+font-size: 18px;
+font-style: normal;
+font-variant: normal;
+font-weight: 700;
+line-height: 15.4px;
+}
+
+h4 {
+  font-size: 14px;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+}
+
+p { font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+font-size: 14px;
+font-style: normal;
+font-variant: normal;
+font-weight: 400;
+line-height: 20px;
+}
