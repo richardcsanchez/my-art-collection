@@ -1,9 +1,12 @@
 <h2>All Genres in Database</h2>
 <%@genres.each do |genre|%>
-<ul><h4><a href="/genres/<%=genre.id%>"><%=genre.name%></a></h4>
-  <form action='/genres/<%=genre.id%>/delete' method='post'>
-    <input id="hidden" type="hidden" name="_method" value="delete"/>
-    <input type='submit' value='Delete Genre'>
-  </form>
-</ul>
+<div style="display: block; border: 1px solid black; height: 100px; width: 250px; text-align: center;"
+  <ul>
+    <h4 style="display: inline-block"><%=genre.name%></h4>
+      <form style="display: inline-block; display: flex; align-items: center; justify-content: center;" action='/genres/<%=genre.id%>/delete' method='post'>
+        <input id="hidden" type="hidden" name="_method" value="delete"/>
+        <input  type='submit' value='Delete Genre'>
+      </form>
+  </ul>
+</div>
 <%end%>
