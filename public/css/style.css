@@ -33,6 +33,7 @@ header li a.active {
 .small-image {
   float: left;
   padding: 5px;
+  padding-right: 15px;
   max-width: 150px;
   max-height: 106px;
   width: auto;
@@ -42,7 +43,7 @@ header li a.active {
 .art-index-list {
   vertical-align: middle;
   background-color: white;
-  border: 2px solid black;
+  border: 1px solid black;
   cursor: pointer;
   width: 30%;
   height: 115px;
@@ -50,9 +51,40 @@ header li a.active {
 
 }
 
+.small-br {
+    height: 20px;
+     }
+
+.index-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: white;
+  border: 1px solid black;
+  cursor: pointer;
+  width: 250px;
+  height: 40px;
+  display: block;
+}
+
 .artwork-title {
   font-style: italic;
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+}
+
+input {
+  background-color: white;
+  float: left;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.small-button:hover {
+  background-color: grey;
+  color: white;
 }
 
 a {
@@ -64,6 +96,15 @@ a {
 h1 {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
   font-size: 24px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+}
+
+h2 {
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  font-size: 21px;
   font-style: normal;
   font-variant: normal;
   font-weight: 700;
