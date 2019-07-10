@@ -1,11 +1,17 @@
-<h2>Your Artworks:</h2>
-<%@artworks.each do |artwork|%>
-  <%if artwork.collector == Helpers.current_user(session)%>
-    <ul><%=artwork.artist.name%>: <%=artwork.title%>
-    <a href='/artworks/<%=artwork.id%>'>View More</a> &nbsp; </ul>
-    </form>
+<h3>Your Artworks:</h3>
+
+  <%@artworks.each do |artwork|%>
+    <%if artwork.collector == Helpers.current_user(session)%>
+    <a class="art-index-list" href='/artworks/<%=artwork.id%>'>
+        <div>
+          <img class="small-image" src="<%=artwork.image%>" alt="<%=artwork.title%>" />
+            <br>
+          <p><%=artwork.artist.name%></p>
+          <p class="artwork-title"><%=artwork.title%></p>
+        </div>
+     </a>
+    <%end%>
   <%end%>
-<%end%>
 
 <br>
 
