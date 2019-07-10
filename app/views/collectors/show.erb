@@ -3,9 +3,8 @@
 
 <h4>Email: <%=@collector.email%></h4>
 <form action= '/collectors/<%=@collector.id%>/edit' method='get'>
-    <input type='submit' value='Edit Profile' />
+    <input  type='submit' value='Edit Profile' />
   </form>
-  <br>
   <form action='/collectors/<%=@collector.id%>/delete' method='post'>
     <input id="hidden" type="hidden" name="_method" value="delete"/>
     <input type='submit' value='Delete Profile'>
@@ -21,17 +20,6 @@
 
 <br><br>
 
-<h4>Browse Your Collection:</h4>
-<form action= '/artworks' method='get'>
-    <input type='submit' value='By Artworks' />
-  </form>
-<form action= '/artists' method='get'>
-    <input type='submit' value='By Artists' />
-  </form>
-  <form action= '/genres' method='get'>
-      <input type='submit' value='By Genre' />
-    </form>
-
-<br><br>
+<h4>Admin Master Lists</h4>
 <form action='/artists/master' method='get'><input type='Submit' value='Artist Master List'></form>
 <form action='/genres/master' method='get'><input type='Submit' value='Genre Master List'></form>

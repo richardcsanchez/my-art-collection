@@ -1,21 +1,14 @@
 <h2> <%=@genre.name%> </h2>
 <%Artwork.all.each do |artwork|%>
   <%if artwork.genre == @genre && artwork.collector == Helpers.current_user(session)%>
-    <ul><a href='/artists/<%=artwork.artist.id%>'><%=artwork.artist.name%></a>:
-    <a href='/artworks/<%=artwork.id%>'><%=artwork.title%></a></ul>
-  <%else nil%>
-    <%end%>
+      <a class="art-index-list" href='/artworks/<%=artwork.id%>'>
+          <div>
+            <img class="small-image" src="<%=artwork.image%>" alt="<%=artwork.title%>" />
+              <br>
+            <p><%=artwork.artist.name%></p>
+            <p class="artwork-title"><%=artwork.title%></p>
+          </div>
+       </a>
+    <%else nil%>
+  <%end%>
 <%end%>
-
-
-<br><br>
-
-<form action= '/genres' method='get'>
-    <input type='submit' value='Show All Genres' />
-  </form>
-<form action= '/artworks' method='get'>
-    <input type='submit' value='Show All Artworks' />
-  </form>
-<form action= '/artists' method='get'>
-    <input type='submit' value='Show All Artists' />
-  </form>
