@@ -1,3 +1,5 @@
+require 'pry'
+
 class ArtworkController <ApplicationController
 
   get '/artworks' do
@@ -75,6 +77,7 @@ class ArtworkController <ApplicationController
 
   delete '/artworks/:id/delete' do
     redirect_if_not_logged_in
+    @artwork = Artwork.find_by_id(params[:id])
 
     if @artwork.collector == Helpers.current_user(session)
       @artwork.delete
