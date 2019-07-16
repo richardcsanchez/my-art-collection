@@ -10,6 +10,9 @@ header  li a:hover {
   background-color: #111;
 }
 
+.form-section {
+  float: left
+}
 header li a.active {
   background-color: #111;
 }
