@@ -1,5 +1,5 @@
 # My Art Catalogue
-This Sinatra App allows the user to add, store, view, and edit their art collection, organized by Artwork, Artist, or Genre. 
+This Sinatra App allows the user to add, store, view, and edit their art collection, organized by Artwork, Artist, or Genre.
 
 ## Installation
 
@@ -11,9 +11,9 @@ $ git clone git@github.com:kittycharles/my-art-catalogue.git
 And then execute:
 
     $ bundle install
-    
+
     $ shotgun
-    
+
 
 ## Usage
 
@@ -21,9 +21,9 @@ On the Homepage, you are given options to Login or Sign Up.
 
 If do not wish to create your own account, use the following username and password to see a "Test" account.
 
-Username: Kitty
+Username: admin
 
-Password: cat
+Password: admin
 
 After logging in, or signing up, you will be directed to your collector page. You are given options to add to your collection, or view your collection by Artworks, Artist, or Genre.
 
