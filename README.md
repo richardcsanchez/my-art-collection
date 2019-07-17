@@ -31,7 +31,7 @@ Explore the collection using the provided buttons. You have the ability to creat
 
 Additionally, you can create Genres and Artists while creating a new artwork. You can delete an Artist or Genre only if there is no artworks associated with them.
 
-To leave the app, the logout button appears on the bottom of the page after logging in.
+To leave the app, the logout button appears on the top of the page after logging in.
 
 
 ## Contributing
