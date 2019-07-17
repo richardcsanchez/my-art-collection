@@ -2,37 +2,74 @@
 
 <form method="post" action="/artworks/<%=@artwork.id%>">
     <input type="hidden" id="hidden" name="_method" value="patch">
-      Title:<input type="text" name="artwork[title]" id="artwork_title" value="<%=@artwork.title%>"><br>
-      Year: <input type="text" name="artwork[year]" id="artwork_year" value="<%= @artwork.year %>"><br>
-      Medium: <input type="text" name="artwork[materials]" id="artwork_materials" value="<%= @artwork.materials %>">
 
-      <br><br>
+    <h4>Title:
+        <br>
+      <input type="text" name='artwork[title]' value="<%=@artwork.title%>">
+    </h4>
+
+    <h4>Year:
+        <br>
+      <input type="text" name="artwork[year]" value="<%=@artwork.year%>">
+    </h4>
+
+    <h4>Medium:
+        <br>
+      <input type="text" name="artwork[materials]" value="<%=@artwork.materials%>">
+    </h4>
+
+    <br>
+    <br>
 
     <h3>Edit Artist </h3>
     <% @artists.each do |artist| %>
-    <input type="checkbox" name="artwork[artist_id]" id="<%= artist.id%>" value="<%=artist.id%>"
-      <%='checked' if @artwork.artist == artist %>><%=artist.name%></input>
-    <%end%>
+      <ul>
+        <p>
+          <input type="checkbox" name="artwork[artist_id]" id="<%= artist.id%>" value="<%= artist.id%>"
+              <%= 'checked' if @artwork.artist == artist %> />
+            <%= artist.name%>
+        </p>
+      </ul>
+    <% end%>
 
-    <br><br>
+    <br>
 
-    <label>Add New Artist:</label>
-    <input type='text' name="artist[name]" id="new_artist">
+    <p>
+      <label> Add New Artist:</label>
+        <br>
+      <input type='text' name="artist[name]" id="new_artist">
+    </p>
 
-    <h3>Edit Genre:</h3>
+    <br>
+
+    <h3> Edit Genre:</h3>
+
     <% @genres.each do |genre| %>
-    <input type="checkbox" name="artwork[genre_id]" id="<%=genre.id%>" value="<%=genre.id%>"
-      <%='checked' if @artwork.genre == genre %>><%=genre.name%></input>
-    <%end%>
+    <ul>
+      <p>
+        <input type="checkbox" name="artwork[genre_id]" id="<%=genre.id%>" value="<%=genre.id%>"
+          <%='checked' if @artwork.genre == genre %> />
+          <%=genre.name%>
+        </p>
+      </ul>
+    <% end%>
 
-    <br><br>
+    <br>
 
-    <label>Add New Genre:</label>
-    <input type='text' name="genre[name]" id="new_genre">
+    <p>
+      <label>Add New Genre:</label>
+        <br>
+      <input type='text' name="genre[name]" id="new_genre">
+    </p>
 
-    <br><br>
+    <br>
 
-    <h4>Image Link: <input type="text" name="artwork[image]" value="<%=@artwork.image%>"></h4>
+    <h4>Image Link:
+      <br>
+      <input type="text" name="artwork[image]" value="<%=@artwork.image%>">
+    </h4>
+
+    <br>
 
     <input type="submit" value="Edit Artwork">
   </form>

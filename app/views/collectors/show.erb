@@ -1,25 +1,29 @@
 <%@collector = Helpers.current_user(session)%>
-<h2> Welcome <%=@collector.username%></h2>
+
+<h2>Welcome <%=@collector.username%></h2>
 
 <h4>Email: <%=@collector.email%></h4>
-<form action= '/collectors/<%=@collector.id%>/edit' method='get'>
+
+  <form action= '/collectors/<%=@collector.id%>/edit' method='get'>
     <input  type='submit' value='Edit Profile' />
   </form>
+
   <form action='/collectors/<%=@collector.id%>/delete' method='post'>
     <input id="hidden" type="hidden" name="_method" value="delete"/>
     <input type='submit' value='Delete Profile'>
   </form>
 
-<br>
+  <br>
 
 <h4>Add to your collection!</h4>
 
-<form action= '/artworks/new' method='get'>
-    <input type='submit' value='Add New Artwork' />
+  <form action= '/artworks/new' method='get'>
+      <input type='submit' value='Add New Artwork' />
   </form>
 
-<br><br>
+<br>
+<br>
 
 <h4>Admin Master Lists</h4>
-<form action='/artists/master' method='get'><input type='Submit' value='Artist Master List'></form>
-<form action='/genres/master' method='get'><input type='Submit' value='Genre Master List'></form>
+  <form action='/artists/master' method='get'><input type='Submit' value='Artist Master List'></form>
+  <form action='/genres/master' method='get'><input type='Submit' value='Genre Master List'></form>

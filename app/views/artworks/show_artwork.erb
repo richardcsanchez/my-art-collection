@@ -1,9 +1,14 @@
 <div class="artwork-card">
+
   <img class="large-image" src="<%=@artwork.image%>" alt="<%=@artwork.title%>" />
+
   <h2 class="artwork-title"><%=@artwork.title%></h2>
+
   <h3 style="text-decoration:underline;"><a href='/artists/<%=@artwork.artist.id%>'><%=@artwork.artist.name%></a></h3>
+
   <h4><%=@artwork.year%></h4>
   <h4><%=@artwork.materials%></h4>
+
   <h4 style="text-decoration:underline;"><a href='/genres/<%=@artwork.genre_id%>'><%=@artwork.genre.name%></a></h4>
 
   <form action='/artworks/<%=@artwork.id%>/edit' method="GET">

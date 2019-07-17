@@ -2,10 +2,8 @@
 
   <%@sorted_artists.each do |artist| %>
   <ul>
-    <a class="index-list" href='artists/<%=artist.id%>'>
-        <p><%=artist.name%></p>
-    </a>
-  </ul>
+      <a class="index-list" href='artists/<%=artist.id%>'>
+          <p><%= artist.name %></p>
+      </a>
+    </ul>
   <%end%>
-
-  <br><br>

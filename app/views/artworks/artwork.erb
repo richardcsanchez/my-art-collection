@@ -2,19 +2,19 @@
 
   <%@artworks.each do |artwork|%>
     <%if artwork.collector == Helpers.current_user(session)%>
-    <a class="art-index-list" href='/artworks/<%=artwork.id%>'>
+    <a class="art-index-list" href='/artworks/<%= artwork.id%>'>
         <div>
-          <img class="small-image" src="<%=artwork.image%>" alt="<%=artwork.title%>" />
+          <img class="small-image" src="<%= artwork.image%>" alt="<%= artwork.title%>" />
             <br>
-          <p><%=artwork.artist.name%></p>
-          <p class="artwork-title"><%=artwork.title%></p>
+          <p><%= artwork.artist.name%></p>
+          <p class="artwork-title"><%= artwork.title%></p>
         </div>
      </a>
-    <%end%>
+    <% end%>
   <%end%>
 
-<h4>Add to your collection!</h4>
+<h4> Add to your collection!</h4>
 
 <form action= '/artworks/new' method='get'>
-    <input  type='submit' value='Add New Artwork' />
-  </form>
+    <input type='submit' value='Add New Artwork' />
+  < /form>

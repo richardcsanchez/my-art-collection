@@ -1,9 +1,21 @@
 <h2>Edit Artist</h2>
+
 <form method="post" action="/artists/<%=@artist.id%>">
+
 <input type="hidden" id="hidden" name="_method" value="patch">
-  Name:<input type="text" name="name" id="artist_name" value="<%=@artist.name%>"><br>
-  Bio: <input type="text" name="bio" id="artist_bio" value="<%= @artist.bio %>"><br>
-  Associated Movements: <input type="content" name="associated_movements" id="artist_associated_movements" value="<%= @artist.associated_movements %>">
-  <br>
+  <p>
+    Name:
+      <br>
+        <input type="text" name="name" id="artist_name" value="<%=@artist.name%>"><br>
+      <br>
+    Bio:
+      <br>
+        <input type="text" name="bio" id="artist_bio" value="<%= @artist.bio %>"><br>
+      <br>
+    Associated Movements:
+      <br>
+        <input type="content" name="associated_movements" id="artist_associated_movements" value="<%= @artist.associated_movements %>">
+      <br>
+    </p>
   <input type="submit" value="Edit Artist">
 </form>

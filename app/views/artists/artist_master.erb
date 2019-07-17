@@ -1,13 +1,13 @@
 <h2>All Artists in Database</h2>
+
 <%@artists.each do |artist|%>
   <div style="display: block; border: 1px solid black; height: 100px; width: 250px; text-align: center;"
     <ul>
-      <h4 style="display: inline-block"><%=artist.name%></h4>
-        <form style="display: inline-block; display: flex; align-items: center; justify-content: center;" action='/artists/<%=artist.id%>/delete' method='post'>
+      <h4 style="display: inline-block"> <%= artist.name %></h4>
+        <form style="display: inline-block; display: flex; align-items: center; justify-content: center;" action='/artists/<%= artist.id %>/delete' method='post'>
           <input id="hidden" type="hidden" name="_method" value="delete"/>
           <input  type='submit' value='Delete Artist'>
         </form>
     </ul>
   </div>
-<br>
 <%end%>

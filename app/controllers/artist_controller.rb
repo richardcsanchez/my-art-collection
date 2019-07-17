@@ -1,3 +1,4 @@
+require 'pry'
 class ArtistController <ApplicationController
 
 get '/artists' do
@@ -49,7 +50,9 @@ end
 get '/artists/:id/edit' do
      redirect_if_not_logged_in
 
+     @artist = Artist.find_by_id(params[:id])
      @collector = Helpers.current_user(session)
+
      if !@collector.artists.include?(@artist)
        flash[:message] = "Error: Unable to access artist"
        redirect to '/artists'
