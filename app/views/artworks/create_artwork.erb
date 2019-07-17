@@ -1,45 +1,70 @@
 <h2>Add a new work to your collection:</h2>
+
 <form action="/artworks" method="POST">
-  <h4>Title: <input type="text" name='artwork[title]' placeholder="Title"></h4>
-	<h4>Year: <input type="text" name="artwork[year]" placeholder="Year Created"></h4>
+  <h4>Title:
+      <br>
+    <input type="text" name='artwork[title]' placeholder="Title">
+  </h4>
+	<h4>Year:
+      <br>
+    <input type="text" name="artwork[year]" placeholder="Year Created">
+  </h4>
+
+  <br>
 
   <h4><label>Choose Artist: </label></h4>
-  <%Artist.all.each do |artist|%>
-  <label><%=artist.name%></label>
-  <input id='artist_<%=artist.id%>' type='radio' name='artwork[artist_id]' value='<%= artist.id %>'>
-  <%end%>
+    <%Artist.all.each do |artist|%>
+  <ul>
+    <label><%=artist.name%></label>
+    <input id='artist_<%=artist.id%>' type='radio' name='artwork[artist_id]' value='<%= artist.id %>'>
+  </ul>
+    <%end%>
+
 
   <br><br>
+  <p>
+    <label>Add New Artist:</label>
+      <br>
+    <input id='new_artist' type='text' name='artist[name]' placeholder="New Artist">
+    <input id='new_artist_bio' type='content' name='artist[bio]' placeholder="New Artist Bio">
+    <input id='new_artist_movements' type='text' name='artist[associated_movements]' placeholder="Associated Movements">
+  </p>
 
-  <label>Add New Artist:</label>
-  <input id='new_artist' type='text' name='artist[name]' placeholder="New Artist">
-  <input id='new_artist_bio' type='content' name='artist[bio]' placeholder="New Artist Bio">
-  <input id='new_artist_movements' type='text' name='artist[associated_movements]' placeholder="Associated Movements">
+  <br>
+
+  <h4>Medium:
+      <br>
+    <input type="text" name="artwork[materials]" placeholder="Medium">
+  </h4>
+
+  <br>
+
+  <h4>
+    <label>Choose Genre:</label>
+  </h4>
+    <%Genre.all.each do |genre|%>
+  <ul>
+    <label><%=genre.name%></label>
+    <input id='genre_<%=genre.id%>' type='radio' name='artwork[genre_id]' value='<%= genre.id %>'>
+  </ul>
+    <%end%>
 
 <br>
 
-  <h4>Medium: <input type="text" name="artwork[materials]" placeholder="Medium"></h4>
-
-  <h4><label>Choose Genre: </label></h4>
-    <%Genre.all.each do |genre|%>
-    <label><%=genre.name%></label>
-    <input id='genre_<%=genre.id%>' type='radio' name='artwork[genre_id]' value='<%= genre.id %>'>
-    <%end%>
-
-<br><br>
-
+  <p>
     <label>Add New Genre:</label>
+  <br>
     <input id='new_genre' type='text' name='genre[name]' placeholder="New Genre">
+  </p>
 
-<br><br>
+  <br>
 
-  <h4>Image Link: <input type="text" name="artwork[image]" placeholder="Image Link"></h4>
+  <h4>Image Link:
+    <br>
+      <input type="text" name="artwork[image]" placeholder="Image Link">
+  </h4>
 
-	<input type="submit" value="Add Artwork">
+  <br>
+
+	   <input type="submit" value="Add Artwork">
 </form>
-
-<br><br><br>
-
-<form action= '/artworks' method='get'>
-    <input type='submit' value='Show All Artworks' />
-  </form>
