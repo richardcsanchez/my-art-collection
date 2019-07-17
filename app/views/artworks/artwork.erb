@@ -1,5 +1,14 @@
 <h3>Your Artworks:</h3>
 
+<p> Add to your collection!</p>
+
+<form action= '/artworks/new' method='get'>
+    <input type='submit' value='Add New Artwork' />
+  </form>
+
+<br>
+<br>
+
   <%@artworks.each do |artwork|%>
     <%if artwork.collector == Helpers.current_user(session)%>
     <a class="art-index-list" href='/artworks/<%= artwork.id%>'>
@@ -12,9 +21,3 @@
      </a>
     <% end%>
   <%end%>
-
-<h4> Add to your collection!</h4>
-
-<form action= '/artworks/new' method='get'>
-    <input type='submit' value='Add New Artwork' />
-  < /form>
