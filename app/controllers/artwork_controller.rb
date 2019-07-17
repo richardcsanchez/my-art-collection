@@ -51,9 +51,9 @@ class ArtworkController <ApplicationController
 
   post '/artworks' do
     redirect_if_not_logged_in
-
     @collector = Helpers.current_user(session)
     @artwork = @collector.artworks.build(params[:artwork])
+    binding.pry
     if !params["artist"]["name"].empty?
       @artwork.artist = Artist.create(params[:artist])
     elsif params["artist"]["name"].empty?
@@ -68,7 +68,7 @@ class ArtworkController <ApplicationController
        @genre = Genre.find_by_id(params[:artwork][:genre_id])
        @artwork.genre_id = @genre.id
      end
-
+     binding.pry
     # @artwork.collector = Helpers.current_user(session)
     @artwork.save
 

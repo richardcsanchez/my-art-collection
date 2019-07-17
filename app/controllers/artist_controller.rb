@@ -34,6 +34,8 @@ end
 delete '/artists/:id/delete' do
   redirect_if_not_logged_in
 
+  @artist = Artist.find_by_id(params[:id])
+
   if  @artist.artworks == []
     @artist.destroy
       redirect to '/artists/master'
