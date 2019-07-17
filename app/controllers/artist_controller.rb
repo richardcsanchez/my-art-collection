@@ -1,4 +1,3 @@
-require 'pry'
 class ArtistController <ApplicationController
 
 get '/artists' do
